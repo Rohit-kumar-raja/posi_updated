@@ -48,7 +48,8 @@ function getPost($from, $count)
             if ($totalbattle > 0) {
                 while ($battle_total_users_data = mysqli_fetch_array($battle_total_users)) {
                     if ($battle_total_users_data['player1_post'] != '' && $battle_total_users_data['player2_post'] != '') {  ?>
-                        <div class="row">
+                        <div class="container">
+                        <div class="row  ">
                             <!-- first user details here -->
                             <div class="col-6" style="padding-right: 5px;padding-left: 5px;">
                                 <?php
@@ -90,6 +91,7 @@ function getPost($from, $count)
                                     <span class="font-weight-bold text-success">Player2 Image not uploaded yet!</span>
                                 <?php } ?>
                             </div>
+                        </div>
                             <!--</div>-->
                             <!-- second user details end  -->
                             <!-- like dislike graph for battle start here-->
@@ -127,8 +129,8 @@ function getPost($from, $count)
                                     </button>
                                 </div>
                             </div>
-                            <!-- battle like dislike end ->
-                    <?php
+                            <!-- battle like dislike end  -->
+                        <?php
                     }
                 }
             }
@@ -173,111 +175,106 @@ function getPost($from, $count)
                     //               <!--post area start-->
                     if ($list['type'] == "text") { ?>
 
-                    <div class="w3-container w3-card w3-white w3-round w3-margin"><br> -->
+                            <div class="w3-container w3-card w3-white w3-round w3-margin"><br> -->
 
-                            <button type="button" data-pid="<?= $list['postId'] ?>" class="dislike-btn w3-button w3-theme-d1 w3-margin-bottom">
+                                <button type="button" data-pid="<?= $list['postId'] ?>" class="dislike-btn w3-button w3-theme-d1 w3-margin-bottom">
 
-                                <i style="color:<?= $color ?>" id="dislike1<?= $list['postId'] ?>" class="fa fa-thumbs-up"></i> &nbsp;
-                                <span id="dislike<?= $list['postId'] ?>">
-                                    <?php totaldisLike($list['postId']); ?><?php totaldisLike($list['postId']); ?>
-                                </span>
-                            </button>
-                            <!-- // ajit added -->
+                                    <i style="color:<?= $color ?>" id="dislike1<?= $list['postId'] ?>" class="fa fa-thumbs-up"></i> &nbsp;
+                                    <span id="dislike<?= $list['postId'] ?>">
+                                        <?php totaldisLike($list['postId']); ?><?php totaldisLike($list['postId']); ?>
+                                    </span>
+                                </button>
+                                <!-- // ajit added -->
+                                <button type="button" data-pid="<?= $list['postId'] ?>" class="comment-btn w3-button w3-theme-d2 w3-margin-bottom"><i class="fa fa-comment"></i> &nbsp;Comment</button>
+                            </div>
 
-
-                            <button type="button" data-pid="<?= $list['postId'] ?>" class="comment-btn w3-button w3-theme-d2 w3-margin-bottom"><i class="fa fa-comment"></i> &nbsp;Comment</button>
-
-                        </div>
-
-                    <?php
+                        <?php
                     } else { ?>
 
 
-                        <div class="w3-container w3-card w3-white w3-round w3-margin"><br>
-                            <img src="dp/<?= $user['dp'] ?>" alt="Avatar4" class="w3-left w3-circle w3-margin-right" style="width:37px;border-radius:50%;margin-bottom:8px;">
-                            <a href="./profile/profile.php?id=<?= $list['userId'] ?>">
-                                <span class="font-weight-bold"><?= $user['firstName'] . ' ' . $user['lastName'] ?> </span>
-                            </a>
+                            <div class="w3-container w3-card w3-white w3-round w3-margin w-100 "><br>
+                                <img src="dp/<?= $user['dp'] ?>" alt="Avatar4" class="w3-left w3-circle w3-margin-right" style="width:37px;border-radius:50%;margin-bottom:8px;">
+                                <a href="./profile/profile.php?id=<?= $list['userId'] ?>">
+                                    <span class="font-weight-bold"><?= $user['firstName'] . ' ' . $user['lastName'] ?> </span>
+                                </a>
 
-                            <!-- <span class="w3-right w3-opacity font-weight-bold">Posted Date : <?= $postDate ?></span> -->
+                                <!-- <span class="w3-right w3-opacity font-weight-bold">Posted Date : <?= $postDate ?></span> -->
+                                <hr class="w3-clear 3">
+                                <!-- <p><?= $list['postContent'] ?></p> -->
 
+                                <img src="<?= 'imagePost/' . $list['postImage'] ?>" style="width:100%;height:430px!important" class="w3-margin-bottom post_image">
+                                <p style="margin: 0px;padding: 0px 20px;background: #fff;"><?= $list['postContent'] ?></p>
 
-                            <hr class="w3-clear 3">
-                            <!-- <p><?= $list['postContent'] ?></p> -->
+                                <!-- like dislike graph -->
+                                <span style="display:none;">
+                                    <?php
+                                    $like_post_num = totalLike($list['postId']);
+                                    // $like1 = totalLike($list['postId']);
+                                    $hate_post_num = totaldisLike($list['postId']);
+                                    //print_r($list['postId']);
 
-                            <img src="<?= 'imagePost/' . $list['postImage'] ?>" style="width:100%;height:430px!important" class="w3-margin-bottom post_image">
-                            <p style="margin: 0px;padding: 0px 20px;background: #fff;"><?= $list['postContent'] ?></p>
+                                    // $like_post_num = 5;
+                                    // $hate_post_num = 6;
 
-                            <!-- like dislike graph -->
-                            <span style="display:none;">
-                                <?php
-                                $like_post_num = totalLike($list['postId']);
-                                // $like1 = totalLike($list['postId']);
-                                $hate_post_num = totaldisLike($list['postId']);
-                                //print_r($list['postId']);
+                                    $sum = $like_post_num + $hate_post_num;
 
-                                // $like_post_num = 5;
-                                // $hate_post_num = 6;
+                                    if (($like_post_num + $hate_post_num) == 0) {
+                                        $like_post_num = 1;
+                                        $hate_post_num = 1;
+                                        $sum = 1;
+                                    }
+                                    $like_percent = round($like_post_num / $sum * 100);
+                                    $hate_percent = round($hate_post_num / $sum * 100);
 
-                                $sum = $like_post_num + $hate_post_num;
+                                    //  echo totalLike($list['postId']);
+                                    // get user data
+                                    $query = "select * from user where userId=" . $_SESSION['id'];
+                                    $result = mysqli_query($conn, $query);
+                                    $user = mysqli_fetch_array($result);
 
-                                if (($like_post_num + $hate_post_num) == 0) {
-                                    $like_post_num = 1;
-                                    $hate_post_num = 1;
-                                    $sum = 1;
-                                }
-                                $like_percent = round($like_post_num / $sum * 100);
-                                $hate_percent = round($hate_post_num / $sum * 100);
-
-                                //  echo totalLike($list['postId']);
-                                // get user data
-                                $query = "select * from user where userId=" . $_SESSION['id'];
-                                $result = mysqli_query($conn, $query);
-                                $user = mysqli_fetch_array($result);
-
-                                ?>
-                            </span>
-                            <div style="position:relative;width: 95%;margin: 0 auto;">
-                                <div class="dislike_base-graph">
-                                    <span>
-                                        <button type="button" data-pid="<?= $list['postId'] ?>" class="like-btn w3-theme-d1 w3-margin-bottom" style="border: none;
+                                    ?>
+                                </span>
+                                <div style="position:relative;width: 95%;margin: 0 auto;">
+                                    <div class="dislike_base-graph">
+                                        <span>
+                                            <button type="button" data-pid="<?= $list['postId'] ?>" class="like-btn w3-theme-d1 w3-margin-bottom" style="border: none;
                                           background: #fff;"><i style="color:<?= $color ?>" id="<?= $list['postId'] ?>" class="fa fa-heart-o heart-graph text-danger"></i> &nbsp;<span id="like<?= $list['postId'] ?>" style="color:#000;"><?php totalLike($list['postId']); ?></span></button>
-                                        <!-- <i class="fa fa-heart-o heart-graph"></i> -->
-                                    </span>
+                                            <!-- <i class="fa fa-heart-o heart-graph"></i> -->
+                                        </span>
 
-                                    <div class="like-graph" style="width: <?= $like_percent; ?>%"><?= $like_percent; ?>%</div>
-                                    <div class="dislike-graph" style="width: <?= $hate_percent; ?>%"><?= $hate_percent; ?>%</div>
+                                        <div class="like-graph" style="width: <?= $like_percent; ?>%"><?= $like_percent; ?>%</div>
+                                        <div class="dislike-graph" style="width: <?= $hate_percent; ?>%"><?= $hate_percent; ?>%</div>
 
-                                    <button type="button" data-pid="<?= $list['postId'] ?>" class="dislike-btn w3-theme-d1 w3-margin-bottom" style="border: none;
+                                        <button type="button" data-pid="<?= $list['postId'] ?>" class="dislike-btn w3-theme-d1 w3-margin-bottom" style="border: none;
                                           background: #fff;"><i style="color:<?= $color ?>" id="<?= $list['postId'] ?>" class="fa fa-heart heart-graph text-danger"></i> &nbsp;<span id="dislike<?= $list['postId'] ?>" style="color:#000;"><?php totaldisLike($list['postId']); ?></span></button>
 
-                                    <!-- <span><i class="fa fa-heart heart-graph"></i></span> -->
+                                        <!-- <span><i class="fa fa-heart heart-graph"></i></span> -->
 
+                                    </div>
                                 </div>
-                            </div>
-                            <!-- // like dislike graph -->
-                            <h6 style="font-size: 12px;text-align:center;color:#7c7c7c;margin:0px;width:100%;"><?php totalLike($list['postId']); ?> votes 5 comment </h6>
+                                <!-- // like dislike graph -->
+                                <h6 style="font-size: 12px;text-align:center;color:#7c7c7c;margin:0px;width:100%;"><?php totalLike($list['postId']); ?> votes 5 comment </h6>
 
-                            <!-- comment button -->
-                            <div class="comment-section">
-                                <div class="user-profile"><img src="dp/<?= $user['dp']; ?>" style="width: 30px;
+                                <!-- comment button -->
+                                <div class="comment-section">
+                                    <div class="user-profile"><img src="dp/<?= $user['dp']; ?>" style="width: 30px;
                                     height: 30px;
                                     margin: 5px;
                                     margin-top: 12px;
                                     margin-left: 14px;" /></div>
-                                <div class="user-comment">
-                                    <button type="button" class="comment-btn" data-pid="<?= $list['postId'] ?>">comment</button>
+                                    <div class="user-comment">
+                                        <button type="button" class="comment-btn" data-pid="<?= $list['postId'] ?>">comment</button>
+                                    </div>
                                 </div>
+                                <!-- //comment button -->
+
+
                             </div>
-                            <!-- //comment button -->
 
+                        <?php } ?>
 
-                        </div>
-
-                    <?php } ?>
-
-                    <!--        post area ends here-->
-            <?php
+                        <!--        post area ends here-->
+                <?php
                 }
             }
             //                 if(total) and while close
@@ -285,234 +282,234 @@ function getPost($from, $count)
                 echo mysqli_error($conn);
             }
 
-            ?>
-            <!--      inner php tag  "above result" is close  -->
+                ?>
+                <!--      inner php tag  "above result" is close  -->
 
 
 
-            <!--    bellow pair of inner if 'post=yes' close '}' start else '{' and close with php tag-->
-            <?php
-        } else { // if no post is there  then .load only friends post..it default post welcom post
+                <!--    bellow pair of inner if 'post=yes' close '}' start else '{' and close with php tag-->
+                <?php
+            } else { // if no post is there  then .load only friends post..it default post welcom post
 
-            $friends = getFriends($_SESSION['id']);
-            if ($friends != 0) {
-                getFriendPost($from, $count);
-            } else {
-                //                 if user has no friend and no post
-                echo '<div class="w3-container w3-card w3-white w3-round w3-margin">
-                  <br><h2> You have no posts </h2></div> ';
-            }
-        }
-    }
-    //query if ends here
-}
-
-// ////////////////////////////////////////////////////////////////////////////////////////
-
-function getFriendPost($from, $count)
-{
-    global $conn;
-
-    $friends = getFriends($_SESSION['id']);
-    $posts = "select * from posts  where userId IN($friends) ORDER BY  postDate DESC LIMIT $from,$count";
-    $postList = mysqli_query($conn, $posts);
-    $total = mysqli_num_rows($postList);
-    if ($total > 0) {
-        while ($list = mysqli_fetch_array($postList)) {
-            $like = myLike($list['postId'], $_SESSION['id']);
-            if ($like) {
-                $color = "blue";
-            } else {
-                $color = "red";
-            }
-
-
-            $user = fetchRow('user', '`userId`=' . $list['userId'] . '');
-
-            $postDate = date('F j,Y,g:i a', strtotime($list['postDate']));
-            if ($list['type'] == "text") { ?>
-                <!--                  html area-->
-                <div class="w3-container w3-card w3-white w3-round w3-margin"><br>
-                    <img src="dp/<?= $user['dp'] ?>" alt="Avatar1" class="w3-left w3-circle w3-margin-right profile-logo">
-                    <span class="w3-right w3-opacity"><?= $postDate ?></span>
-                    <a href="./profile/profile.php?id=<?= $list['userId'] ?>">
-                        <h4><?= $user['firstName'] ?></h4><br>
-                    </a>
-                    <hr class="w3-clear 4">
-
-                    <p><?= $list['postContent'] ?></p>
-
-                    <button type="button" data-pid="<?= $list['postId'] ?>" class="  like-btn w3-button w3-theme-d1 w3-margin-bottom">
-                        <i style="color:<?= $color ?>" id="<?= $list['postId'] ?>" class="fa fa-thumbs-up"></i> &nbsp;
-                        <span id="like<?= $list['postId'] ?>">
-                            <?php totalLike($list['postId']); ?></span></button>
-
-                    <!-- ajit added -->
-                    <button type="button" data-pid="<?= $list['postId'] ?>" class="  dislike-btn w3-button w3-theme-d1 w3-margin-bottom">
-                        <i style="color:<?= $color ?>" id="<?= $list['postId'] ?>" class="fa fa-thumbs-up"></i> &nbsp;
-                        <span id="dislike<?= $list['postId'] ?>">
-                            <?php totaldisLike($list['postId']); ?></span></button>
-                    <!--// ajit added -->
-
-                    <button type="button" data-pid="<?= $list['postId'] ?>" class="comment-btn w3-button w3-theme-d2 w3-margin-bottom"><i class="fa fa-comment"></i> &nbsp;Comment</button>
-
-                </div>
-
-            <?php
-            } else { ?>
-                <!--                html area  -->
-                <div class="w3-container w3-card w3-white w3-round w3-margin"><br>
-                    <img src="dp/<?= $user['dp'] ?>" alt="Avatar2" class="w3-left w3-circle w3-margin-right" style="border-radius:50%;width:100px;">
-                    <span class="w3-right w3-opacity"><?= $postDate ?></span>
-                    <a href="./profile/profile.php?id=<?= $list['userId'] ?>">
-                        <h4><?= $user['firstName'] ?></h4><br>
-                    </a>
-                    <hr class="w3-clear 5">
-                    <p><?= $list['postContent'] ?></p>
-                    <img src="<?= 'imagePost/' . $list['postImage'] ?>" style="width:100%" class="w3-margin-bottom">
-
-
-                    <button type="button" data-pid="<?= $list['postId'] ?>" class="like-btn w3-button w3-theme-d1 w3-margin-bottom">
-                        <i style="color:<?= $color ?>" id="<?= $list['postId'] ?>" class="fa fa-thumbs-up"></i> &nbsp;
-                        <span id="like<?= $list['postId'] ?>">
-                            <?php totalLike($list['postId']); ?></span></button>
-
-                    <!-- ajit added -->
-                    <button type="button" data-pid="<?= $list['postId'] ?>" class="dislike-btn w3-button w3-theme-d1 w3-margin-bottom">
-                        <i style="color:<?= $color ?>" id="<?= $list['postId'] ?>" class="fa fa-thumbs-up"></i> &nbsp;
-                        <span id="dislike<?= $list['postId'] ?>">
-                            <?php totaldisLike($list['postId']); ?></span></button>
-                    <!-- // ajit added -->
-
-                    <button type="button" data-pid="<?= $list['postId'] ?>" class="comment-btn w3-button w3-theme-d2 w3-margin-bottom"><i class="fa fa-comment"></i> &nbsp;Comment</button>
-                </div>
-
-<?php }
-        }
-    }
-}
-// ////////////////////////////////////////////////////////////////////////////////////////////
-
-function getFriends($id)
-{
-    global $conn;
-    $i = 0;
-    $friendId[] = 0;
-    $query = "select userOne,userTwo from friends where userOne=$id or userTwo=$id"; // when i'am 1st col,get friend Id from userTwo
-    $friends = mysqli_query($conn, $query);
-    if ($friends) {
-        if (mysqli_num_rows($friends) >= 1) {
-            while ($row = mysqli_fetch_array($friends)) {
-
-                if ($row['userOne'] == $id) {
-                    $friendId[$i] = $row['userTwo'];
-
-                    $i++;
+                $friends = getFriends($_SESSION['id']);
+                if ($friends != 0) {
+                    getFriendPost($from, $count);
                 } else {
-                    $friendId[$i] = $row['userOne'];
-
-                    $i++;
+                    //                 if user has no friend and no post
+                    echo '<div class="w3-container w3-card w3-white w3-round w3-margin">
+                  <br><h2> You have no posts </h2></div> ';
                 }
             }
-
-            $str = implode(',', $friendId);
-            return $str;
-        } else {
-            return 0;
         }
-    } else {
-        mysqli_error($conn);
-    }
-}
-//  ////////////////////////////////////////////////////////////////
-?>
-
-<style>
-    .like-graph,
-    .dislike-graph {
-        height: 30px;
-        color: #fff;
-        text-align: center;
-        font-weight: 900;
-        font-size: 12px;
-        padding: 7px 30px 5px 14px;
+        //query if ends here
     }
 
-    .like-graph {
-        border-radius: 20px 0px 0px 20px;
-        background: #fd012f;
-        margin-left: 10px;
+    // ////////////////////////////////////////////////////////////////////////////////////////
+
+    function getFriendPost($from, $count)
+    {
+        global $conn;
+
+        $friends = getFriends($_SESSION['id']);
+        $posts = "select * from posts  where userId IN($friends) ORDER BY  postDate DESC LIMIT $from,$count";
+        $postList = mysqli_query($conn, $posts);
+        $total = mysqli_num_rows($postList);
+        if ($total > 0) {
+            while ($list = mysqli_fetch_array($postList)) {
+                $like = myLike($list['postId'], $_SESSION['id']);
+                if ($like) {
+                    $color = "blue";
+                } else {
+                    $color = "red";
+                }
+
+
+                $user = fetchRow('user', '`userId`=' . $list['userId'] . '');
+
+                $postDate = date('F j,Y,g:i a', strtotime($list['postDate']));
+                if ($list['type'] == "text") { ?>
+                    <!--                  html area-->
+                    <div class="w3-container w3-card w3-white w3-round w3-margin"><br>
+                        <img src="dp/<?= $user['dp'] ?>" alt="Avatar1" class="w3-left w3-circle w3-margin-right profile-logo">
+                        <span class="w3-right w3-opacity"><?= $postDate ?></span>
+                        <a href="./profile/profile.php?id=<?= $list['userId'] ?>">
+                            <h4><?= $user['firstName'] ?></h4><br>
+                        </a>
+                        <hr class="w3-clear 4">
+
+                        <p><?= $list['postContent'] ?></p>
+
+                        <button type="button" data-pid="<?= $list['postId'] ?>" class="  like-btn w3-button w3-theme-d1 w3-margin-bottom">
+                            <i style="color:<?= $color ?>" id="<?= $list['postId'] ?>" class="fa fa-thumbs-up"></i> &nbsp;
+                            <span id="like<?= $list['postId'] ?>">
+                                <?php totalLike($list['postId']); ?></span></button>
+
+                        <!-- ajit added -->
+                        <button type="button" data-pid="<?= $list['postId'] ?>" class="  dislike-btn w3-button w3-theme-d1 w3-margin-bottom">
+                            <i style="color:<?= $color ?>" id="<?= $list['postId'] ?>" class="fa fa-thumbs-up"></i> &nbsp;
+                            <span id="dislike<?= $list['postId'] ?>">
+                                <?php totaldisLike($list['postId']); ?></span></button>
+                        <!--// ajit added -->
+
+                        <button type="button" data-pid="<?= $list['postId'] ?>" class="comment-btn w3-button w3-theme-d2 w3-margin-bottom"><i class="fa fa-comment"></i> &nbsp;Comment</button>
+
+                    </div>
+
+                <?php
+                } else { ?>
+                    <!--                html area  -->
+                    <div class="w3-container w3-card w3-white w3-round w3-margin"><br>
+                        <img src="dp/<?= $user['dp'] ?>" alt="Avatar2" class="w3-left w3-circle w3-margin-right" style="border-radius:50%;width:100px;">
+                        <span class="w3-right w3-opacity"><?= $postDate ?></span>
+                        <a href="./profile/profile.php?id=<?= $list['userId'] ?>">
+                            <h4><?= $user['firstName'] ?></h4><br>
+                        </a>
+                        <hr class="w3-clear 5">
+                        <p><?= $list['postContent'] ?></p>
+                        <img src="<?= 'imagePost/' . $list['postImage'] ?>" style="width:100%" class="w3-margin-bottom">
+
+
+                        <button type="button" data-pid="<?= $list['postId'] ?>" class="like-btn w3-button w3-theme-d1 w3-margin-bottom">
+                            <i style="color:<?= $color ?>" id="<?= $list['postId'] ?>" class="fa fa-thumbs-up"></i> &nbsp;
+                            <span id="like<?= $list['postId'] ?>">
+                                <?php totalLike($list['postId']); ?></span></button>
+
+                        <!-- ajit added -->
+                        <button type="button" data-pid="<?= $list['postId'] ?>" class="dislike-btn w3-button w3-theme-d1 w3-margin-bottom">
+                            <i style="color:<?= $color ?>" id="<?= $list['postId'] ?>" class="fa fa-thumbs-up"></i> &nbsp;
+                            <span id="dislike<?= $list['postId'] ?>">
+                                <?php totaldisLike($list['postId']); ?></span></button>
+                        <!-- // ajit added -->
+
+                        <button type="button" data-pid="<?= $list['postId'] ?>" class="comment-btn w3-button w3-theme-d2 w3-margin-bottom"><i class="fa fa-comment"></i> &nbsp;Comment</button>
+                    </div>
+
+    <?php }
+            }
+        }
     }
+    // ////////////////////////////////////////////////////////////////////////////////////////////
 
+    function getFriends($id)
+    {
+        global $conn;
+        $i = 0;
+        $friendId[] = 0;
+        $query = "select userOne,userTwo from friends where userOne=$id or userTwo=$id"; // when i'am 1st col,get friend Id from userTwo
+        $friends = mysqli_query($conn, $query);
+        if ($friends) {
+            if (mysqli_num_rows($friends) >= 1) {
+                while ($row = mysqli_fetch_array($friends)) {
 
-    .dislike-graph {
-        border-radius: 0px 20px 20px 0px;
-        background: #000;
-        margin-right: 10px;
+                    if ($row['userOne'] == $id) {
+                        $friendId[$i] = $row['userTwo'];
+
+                        $i++;
+                    } else {
+                        $friendId[$i] = $row['userOne'];
+
+                        $i++;
+                    }
+                }
+
+                $str = implode(',', $friendId);
+                return $str;
+            } else {
+                return 0;
+            }
+        } else {
+            mysqli_error($conn);
+        }
     }
+    //  ////////////////////////////////////////////////////////////////
+    ?>
 
-    .dislike_base-graph {
-        /* position: absolute; */
-        bottom: 32px;
-        width: 100%;
-        display: flex;
-        background: #fff;
-        padding: 5px;
-    }
+    <style>
+        .like-graph,
+        .dislike-graph {
+            height: 30px;
+            color: #fff;
+            text-align: center;
+            font-weight: 900;
+            font-size: 12px;
+            padding: 7px 30px 5px 14px;
+        }
 
-    .heart-graph {
-        font-size: 26px !important;
-        margin: 0 5px;
-    }
+        .like-graph {
+            border-radius: 20px 0px 0px 20px;
+            background: #fd012f;
+            margin-left: 10px;
+        }
 
-    /* user comment css */
-    .comment-section {
-        display: flex;
-        width: 90%;
-        margin: 0 3%;
-    }
 
-    .comment-section .user-profile img {
-        border-radius: 50%;
-    }
+        .dislike-graph {
+            border-radius: 0px 20px 20px 0px;
+            background: #000;
+            margin-right: 10px;
+        }
 
-    .comment-section .user-comment button {
-        border-radius: 100px;
-        width: 100% !important;
-        border: 1px solid #dcdcdc;
-        padding: 7px;
-        text-align: left;
-        color: #dcdcdc;
-        background: #fff !important;
-    }
+        .dislike_base-graph {
+            /* position: absolute; */
+            bottom: 32px;
+            width: 100%;
+            display: flex;
+            background: #fff;
+            padding: 5px;
+        }
 
-    /* .comment-section .user-comment input::placeholder {
+        .heart-graph {
+            font-size: 26px !important;
+            margin: 0 5px;
+        }
+
+        /* user comment css */
+        .comment-section {
+            display: flex;
+            width: 90%;
+            margin: 0 3%;
+        }
+
+        .comment-section .user-profile img {
+            border-radius: 50%;
+        }
+
+        .comment-section .user-comment button {
+            border-radius: 100px;
+            width: 100% !important;
+            border: 1px solid #dcdcdc;
+            padding: 7px;
+            text-align: left;
+            color: #dcdcdc;
+            background: #fff !important;
+        }
+
+        /* .comment-section .user-comment input::placeholder {
         color: #959595;
     } */
 
-    .comment-section .user-comment {
-        width: 95% !important;
-        margin: 10px auto;
-    }
-
-    @media(max-width:576px) {
-        .post_image {
-            height: 200px;
+        .comment-section .user-comment {
+            width: 95% !important;
+            margin: 10px auto;
         }
-    }
 
-    button:focus {
-        border: none !important;
-        outline: none !important;
-    }
+        @media(max-width:576px) {
+            .post_image {
+                height: 200px;
+            }
+        }
 
-    p {
-        padding-top: 10px;
-    }
+        button:focus {
+            border: none !important;
+            outline: none !important;
+        }
 
-    .profile-logo {
-        width: 37px;
-        border-radius: 50%;
-        margin-bottom: 8px;
-    }
-</style>
+        p {
+            padding-top: 10px;
+        }
+
+        .profile-logo {
+            width: 37px;
+            border-radius: 50%;
+            margin-bottom: 8px;
+        }
+    </style>

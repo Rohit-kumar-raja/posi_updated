@@ -42,7 +42,7 @@ if (!isset($_SESSION['email'])) {
         <div class="mt-5 pt-5 p-5">
             <?php
             $id = $_SESSION['id'];
-            $notification_all_users = fetchResult('notifications', 'notificationFor=' . $id . '');
+            $notification_all_users = fetchResult('notifications', 'notificationFor=' . $id . ' ORDER BY `notificationId` DESC');
             while ($row = mysqli_fetch_array($notification_all_users)) {
                 $post_idd = $row['postId'];
                 $users_by_data = fetchRow('user', '`userId` = ' . $row['notificationBy'] . '');
