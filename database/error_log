@@ -1,0 +1,4 @@
+[06-Nov-2022 04:13:55 UTC] PHP Warning:  move_uploaded_file(../imagePost/1109691391PXL_20221105_223637150.NIGHT.jpg): Failed to open stream: No such file or directory in /home/posigraph/public_html/app1/database/insertPost.php on line 42
+[06-Nov-2022 04:13:55 UTC] PHP Warning:  move_uploaded_file(): Unable to move '/tmp/phprUaF0P' to '../imagePost/1109691391PXL_20221105_223637150.NIGHT.jpg' in /home/posigraph/public_html/app1/database/insertPost.php on line 42
+[06-Nov-2022 17:54:22 UTC] PHP Warning:  move_uploaded_file(../imagePost/1062916859IMG-20221104-WA0181.jpg): Failed to open stream: No such file or directory in /home/posigraph/public_html/app1/database/insertPost.php on line 42
+[06-Nov-2022 17:54:22 UTC] PHP Warning:  move_uploaded_file(): Unable to move '/tmp/phpzVgbvm' to '../imagePost/1062916859IMG-20221104-WA0181.jpg' in /home/posigraph/public_html/app1/database/insertPost.php on line 42
