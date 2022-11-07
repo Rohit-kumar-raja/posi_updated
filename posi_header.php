@@ -1,7 +1,7 @@
 <?php
 // session_start();
 // include("./database/getMsgNotif.php");
-
+include './framwork/main.php';
 
 ?>
 <html lang="en">
@@ -40,7 +40,7 @@
 
   <title>Posigraph </title>
   <link rel="icon" type="image/x-icon" href="https://posigraph.com/posi_favicon.png">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
 </head>
 
@@ -63,18 +63,14 @@
               </div>
             </div>
           </div>
-
-
           <div class="col-2 col-xs-2 header-chat-icons">
-            <a href="search-form.php"  title="">
-             <i class="fa fa-search" aria-hidden="true"></i>
-           </a>
+            <a href="search-form.php" title="">
+              <i class="fa fa-search" aria-hidden="true"></i>
+            </a>
           </div>
-
-
           <div class="col-2 col-xs-2 header-chat-icons">
             <a href="./message/chatApp.php" title="">
-              <i class="fa fa-envelope-o" aria-hidden="true"></i>
+              <i class="fa fa-paper-plane" aria-hidden="true"></i>
             </a>
           </div>
 
@@ -138,19 +134,8 @@
         <div class="col-3 col-xs-3 footer-icons">
           <a href="notification.php" class="footer-single-icon btn" title="">
             <i class="fa-solid fa-heart">
-                <span class="label label-white">
-            
-            <?php
-                // $n=getTotalUnseenNotif($_SESSION['id']);
-                // if($n>0)
-                //     echo $n;
-              ?>
-              
-              </span></i>
-            <!--<span class="notification_alert badge badge-light">-->
-              
-            <!--</span>-->
-           
+            </i> <sup style="font-size: 10px ; margin-left: -8px;" class=" p-1 text-white bg-danger rounded-circle">5</sup>
+
           </a>
         </div>
         <div class="col-3 col-xs-3 footer-icons">

@@ -46,14 +46,14 @@ if (!isset($_SESSION['email'])) {
   include_once("database/getPost.php");
   include("database/getMyImagePost.php");
   include("database/getMsgNotif.php");
-  include "framwork/main.php";
+  include "posi_header.php";
+  include "posi.php";
   $userid = $_GET['id'] == '' ? $_SESSION['id'] : $_GET['id'];
 
   $user = fetchRow('user', '`userId`= ' . $userid . '');
   $userDetail = fetchRow('user_details', '`userId`= ' . $userid . '');
 
-  include "posi_header.php";
-  include "posi.php";
+
 ?>
   <style>
 

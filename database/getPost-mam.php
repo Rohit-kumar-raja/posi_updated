@@ -7,7 +7,6 @@ include "database/like.php";
 include "database/dislike.php";
 include "database/p1like.php";
 include "database/p2like.php";
-include "framwork/main.php";
 $database = "posigraph_socialplexus";
 $table = "posts";
 mysqli_select_db($conn, $database);
