@@ -41,7 +41,7 @@ if($friendList)
             $read="";
 
             echo "
-               <div class='online-user-img' style=''>
+               <div class='online-user-img border mb-2 pt-2 pb-2' style=''>
                <img src='../dp/{$dp}' style='width: 50px;margin-bottom: 10px'>
                <a style='' href='chatApp_me.php?id=$userId'> $userName </a>   
                <p style='

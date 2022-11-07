@@ -253,7 +253,7 @@ function getPost($from, $count)
                                     </div>
                                 </div>
                                 <!-- // like dislike graph -->
-                                <h6 style="font-size: 12px;text-align:center;color:#7c7c7c;margin:0px;width:100%;"><?php totalLike($list['postId']); ?> votes 5 comment </h6>
+                                <h6 style="font-size: 12px;text-align:center;color:#7c7c7c;margin:0px;width:100%;"> <span class="text-success" ><?= mysqli_num_rows(fetchResult('likes','postId='.$list['postId'].''))+ mysqli_num_rows(fetchResult('dislikes','postId='.$list['postId'].'')) ?> votes</span> <span class="text-danger"><?= mysqli_num_rows(fetchResult('comments','postId='.$list['postId'].'')) ?> comment</span> </h6>
 
                                 <!-- comment button -->
                                 <div class="comment-section">
