@@ -58,7 +58,7 @@ function updateAll($table_name, $post, $condition = 1)
     foreach ($post as $p => $value) {
         array_push($data, '`' . $p . '`=' . "'" . $value . "'");
     }
-    $query = "UPDATE `$table_name` SET " . implode(',', $data) . "WHERE" . $condition;
+  echo   $query = "UPDATE `$table_name` SET " . implode(',', $data) . "WHERE" . $condition;
     if (mysqli_query($conn, $query)) {
         return "success";
     } else {

@@ -39,9 +39,6 @@ if (!isset($_SESSION['email'])) {
     </head>
 
     <body class="w3-theme-l5">
-
-
-
         <div class="mt-5 pt-5 p-5">
             <?php
             $id = $_SESSION['id'];
@@ -52,16 +49,13 @@ if (!isset($_SESSION['email'])) {
                 $my_img = $users_by_data["dp"];
                 $post_data = fetchRow('posts', 'postId=' . $row['postId'] . '');
             ?>
-                <div class='alert alert-<?= $row['notificationStatus'] == 'new' ? 'success' : 'secondary' ?> alert-dismissible show'>
-                    <button type='button' class='close' data-dismiss='alert'>&times;</button>
-                    <a class="text-primary" href='home.php?id=<?= $users_by_data['userId'] ?>'> <img width="50px" class="rounded-circle" src='./dp/<?= $my_img ?>' /></a>
-                    <a href='home.php?id=<?= $users_by_data['userId'] ?>' class='w3-bar-item w3-button '><?= $row['notificationMessage'] ?></a>
-                    <a class="text-primary" href="dashboard.php?post_id=<?= $row['postId'] ?>&post_type=<?= $row['post_type'] ?>"><?= $post_data['postContent'] == '' ? '' : $post_data['postContent'] ?></a>
+                <div onclick="seeNotification(<?= $row['notificationId'] ?>)" class='alert alert-<?= $row['notificationStatus'] == 'new' ? 'success' : 'secondary' ?>  show rounded-pill'>
+                    <a onclick="seeNotification(<?= $row['notificationId'] ?>)" class="text-primary" href='home.php?id=<?= $users_by_data['userId'] ?>'> <img width="50px" class="rounded-circle" src='dp/<?= $my_img ?>' /></a>
+                    <a onclick="seeNotification(<?= $row['notificationId'] ?>)" href='home.php?id=<?= $users_by_data['userId'] ?>' class='w3-bar-item w3-button '><?= $row['notificationMessage'] ?></a> -
+                    <a onclick="seeNotification(<?= $row['notificationId'] ?>)" class="text-primary" href="dashboard.php?post_id=<?= $row['postId'] ?>&post_type=<?= $row['post_type'] ?>"><?= $post_data['postContent'] == '' ? '' : $post_data['postContent'] ?></a>
                 </div>
             <?php } ?>
-
         </div>
-
     </body>
 
     </html>
@@ -70,3 +64,16 @@ if (!isset($_SESSION['email'])) {
 
 }
 ?>
+
+<script>
+    function seeNotification(id) {
+        $.ajax({
+            method: 'post',
+            url: "database/seenotification.php",
+            data:{id:id},
+            success: function(result) {
+
+            }
+        });
+    }
+</script>

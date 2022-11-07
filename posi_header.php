@@ -134,7 +134,8 @@ include './framwork/main.php';
         <div class="col-3 col-xs-3 footer-icons">
           <a href="notification.php" class="footer-single-icon btn" title="">
             <i class="fa-solid fa-heart">
-            </i> <sup style="font-size: 10px ; margin-left: -8px;" class=" p-1 text-white bg-danger rounded-circle">5</sup>
+              <?php $notification_count=fetchResult('notifications','notificationFor='.$_SESSION['id'].' && notificationStatus="new"') ?>
+            </i> <sup style="font-size: 10px ; margin-left: -8px;" class=" p-1 text-white bg-danger rounded-circle"><?= mysqli_num_rows($notification_count) ?></sup>
 
           </a>
         </div>

@@ -3,6 +3,7 @@ session_start();
 if (!isset($_SESSION['email'])) {
     header("location:index.php");
 } else {
+    include "posi_header.php";
 
     include_once("database/connection.php");
     include_once("database/getPost-mam.php");
@@ -17,7 +18,6 @@ if (!isset($_SESSION['email'])) {
     $result = mysqli_query($conn, $query);
     $userDetail = mysqli_fetch_array($result);
 
-    include "posi_header.php";
 ?>
 
     <style>
@@ -61,7 +61,7 @@ if (!isset($_SESSION['email'])) {
     </style>
     <!--// html code-->
 
-    <?php include "feed.php" ?>
+    <?php  include "feed.php" ?>
     <!-- post start -->
 
     <?php // include "dash-testing.php";
