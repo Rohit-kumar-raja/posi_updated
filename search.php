@@ -116,8 +116,17 @@
                <img class='card-img-top' src='dp/{$dp}' alt='Card image' style=''>
                <div class='card-body'>
                  <h4 class='card-title'>{$fname} {$lname}</h4>                 
-                  <a href='./profile/profile.php?id={$id}'> <p><button class='btn btn-success'>View Profile</button></p></a>
-               </div>
+                <div class='row'>
+                <div class='col-6'>
+                <a href='./profile/profile.php?id={$id}'> <p><button class='btn btn-success btn-sm'>View Profile</button></p></a>
+                </div>
+                <div class='col-6'>
+                <a id='request' href='#'><button data-id='{$row['userId']}'  class='request-btn btn btn-sm btn-info' >Follow</button>
+                </div>
+                </div>
+                  
+               
+              </div>
              </div>  
              </div>                            
                ";

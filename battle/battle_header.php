@@ -45,7 +45,9 @@ include '../framwork/main.php';
 </head>
 
 <body>
+  <?php
 
+  $page_name = explode('/', $_SERVER['SCRIPT_NAME']); ?>
   <div class="fixed-header">
     <header id="header" class="header-items profile-header">
       <div class="container-fluid">
@@ -117,7 +119,7 @@ include '../framwork/main.php';
       <div class="row" id="myDIV">
         <div class="col-3 col-xs-3 footer-icons">
           <a href="../dashboard.php" class="footer-single-icon btn active" title="">
-            <i class="fa-solid fa-house"></i>
+            <i class="fa-solid fa-house  <?= array_search('dashboard.php', $page_name) != '' ? 'text-danger' : '' ?>"></i>
             <!-- <div class="hover-display">
                 <span>Home</span>
               </div>     -->
@@ -125,23 +127,23 @@ include '../framwork/main.php';
         </div>
         <div class="col-3 col-xs-3 footer-icons">
           <a href="../add_post.php" class="footer-single-icon btn" title="">
-            <i class="fa-solid fa-camera"></i>
+            <i class="fa-solid fa-camera <?= array_search('add_post.php', $page_name) != '' ? 'text-danger' : '' ?>"></i>
             <!-- <div class="hover-display">
                 <span>Post</span>
               </div> -->
           </a>
         </div>
-        <div class="col-3 col-xs-3 footer-icons">
-          <a href="../dashboard-old2 (2).php" class="footer-single-icon btn" title="">
-            <i class="fa-solid fa-heart">
-              <?php $notification_count=fetchResult('notifications','notificationFor='.$_SESSION['id'].' && notificationStatus="new"') ?>
+        <div class="col-3 col-xs-3 footer-icons ">
+          <a href="../notification.php" class="footer-single-icon btn  " title="">
+            <i class="fa-solid fa-heart <?= array_search('notification.php', $page_name) != '' ? 'text-danger' : '' ?>">
+              <?php $notification_count = fetchResult('notifications', 'notificationFor=' . $_SESSION['id'] . ' && notificationStatus="new"') ?>
             </i> <sup style="font-size: 10px ; margin-left: -8px;" class=" p-1 text-white bg-danger rounded-circle"><?= mysqli_num_rows($notification_count) ?></sup>
 
           </a>
         </div>
         <div class="col-3 col-xs-3 footer-icons">
           <a href="../home.php" class="footer-single-icon btn" title="">
-            <i class="fa-solid fa-user"></i>
+            <i class="fa-solid fa-user <?= array_search('home.php', $page_name) != '' ? 'text-danger' : '' ?>"></i>
             <!-- <div class="hover-display">
                 <span>notify</span>
               </div> -->
@@ -153,6 +155,6 @@ include '../framwork/main.php';
 
   <br>
   <br>
-  
+
   <hr class="border">
   <!-- fixed footer end -->

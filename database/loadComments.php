@@ -26,13 +26,13 @@ if (isset($_POST['comment-btn'])) {
     background-color: #f1f1f1!important;
     border-radius: 20px;font-size: 14px;">
         <!-- <i class="fa fa-thumbs-up"></i>  -->
-        <?= mysqli_num_rows(fetchResult('likes','postId='.$pid.''))+ mysqli_num_rows(fetchResult('dislikes','postId='.$pid.'')) ?> Votes
+        <?= mysqli_num_rows(fetchResult('likes', 'postId=' . $pid . '')) + mysqli_num_rows(fetchResult('dislikes', 'postId=' . $pid . '')) ?> Votes
     </button>
     <button type="button" data-pid='<?php echo $pid ?>' class="all-comments w3-button w3-theme-d1 w3-margin-bottom btn" style="color: #8d8d8d!important;
     background-color: #f1f1f1!important;
     border-radius: 20px;font-size: 14px;">
         <!-- <i class="fa fa-comment"></i>  -->
-        <?= mysqli_num_rows(fetchResult('comments','postId='.$pid.'')) ?> Comments
+        <?= mysqli_num_rows(fetchResult('comments', 'postId=' . $pid . '')) ?> Comments
     </button>
 
     <div>
