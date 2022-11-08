@@ -375,25 +375,12 @@ if (!isset($_SESSION['email'])) {
         //    later after click on post btn check two thing  textarea and file choosen then run ajax..
         //       create formData() fetch inputed value from input field object or use submit btn for complete form form submission at once.  
 
-        // $("#cstmbtn").click(function() {
-        //     const filebtn = document.getElementById("file");
-        //     filebtn.click();
-        //     filebtn.addEventListener("change", function() {
 
-        //         if (filebtn.value) {
-        //             var checkFile = $("#file");
-        //             var data = checkFile[0].files;
-        //             $("#fileName").css("font-size", "15px");
-        //             $("#fileName").css("color", "darkGreen");
-        //             $("#fileName").html(data[0].name);
-        //         }
-        //     });
-        // });
 
 
 
         $("#postbtn").click(function() {
-            var checkFile = $("#file");
+            var checkFile = $("#cstmbtn");
             var Length = checkFile[0].files.length;
             var data = checkFile[0].files;
             var check;
