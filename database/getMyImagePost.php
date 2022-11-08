@@ -2,12 +2,12 @@
 include("connection.php");
 
 // mysqli_select_db($conn,"posigraph_socialplexus");
-function image()
+function image($userId)
 { 
     global $conn;
     // echo "select * from  posts where userId={$_SESSION['id']}  AND type LIKE 'image%' ORDER BY post#pop-up-divDate DESC";
     // exit;
-    $query="select * from  posts where userId={$_SESSION['id']}  AND type LIKE 'image%' ORDER BY postDate DESC";
+    $query="select * from  posts where userId={$userId}  AND type LIKE 'image%' ORDER BY postDate DESC";
     $image=mysqli_query($conn,$query);
     while($row=mysqli_fetch_array($image))
     {

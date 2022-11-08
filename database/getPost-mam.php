@@ -49,49 +49,49 @@ function getPost($from, $count)
                 while ($battle_total_users_data = mysqli_fetch_array($battle_total_users)) {
                     if ($battle_total_users_data['player1_post'] != '' && $battle_total_users_data['player2_post'] != '') {  ?>
                         <div class="container">
-                        <div class="row  ">
-                            <!-- first user details here -->
-                            <div class="col-6" style="padding-right: 5px;padding-left: 5px;">
-                                <?php
-                                $details_of_user_one = fetchRow('user', '`userId` = ' . $battle_total_users_data['player1_id'] . '');
-                                ?>
+                            <div class="row  ">
+                                <!-- first user details here -->
+                                <div class="col-6" style="padding-right: 5px;padding-left: 5px;">
+                                    <?php
+                                    $details_of_user_one = fetchRow('user', '`userId` = ' . $battle_total_users_data['player1_id'] . '');
+                                    ?>
 
-                                <img src="dp/<?= $details_of_user_one['dp']; ?>" alt="Avatar4 11" class="w3-left w3-circle w3-margin-right profile-logo" style="margin-left: 10px;">
+                                    <img src="dp/<?= $details_of_user_one['dp']; ?>" alt="Avatar4 11" class="w3-left w3-circle w3-margin-right profile-logo" style="margin-left: 10px;">
 
-                                <a href="./profile/profile.php?id=<?= $details_of_user_one['userId'] ?>">
-                                    <span class="font-weight-bold"><?= $details_of_user_one['firstName'] . ' ' . $details_of_user_one['lastName']; ?></span></a>
-                                <hr class="w3-clear 1">
-                                <?php if ($battle_total_users_data['player1_post'] != '') { ?>
+                                    <a href="./profile/profile.php?id=<?= $details_of_user_one['userId'] ?>">
+                                        <span class="font-weight-bold"><?= $details_of_user_one['firstName'] . ' ' . $details_of_user_one['lastName']; ?></span></a>
+                                    <hr class="w3-clear 1">
+                                    <?php if ($battle_total_users_data['player1_post'] != '') { ?>
 
-                                    <img width="100%" <?= ' src="data:image/jpeg;base64,' . base64_encode($battle_total_users_data['player1_post']) . '"' ?> class="w3-margin-bottom post_image" />
+                                        <img width="100%" <?= ' src="data:image/jpeg;base64,' . base64_encode($battle_total_users_data['player1_post']) . '"' ?> class="w3-margin-bottom post_image" />
 
-                                <?php } else {
-                                ?>
-                                    <span class="font-weight-bold text-success">Player1 Image not uploaded yet!</span>
-                                <?php } ?>
+                                    <?php } else {
+                                    ?>
+                                        <span class="font-weight-bold text-success">Player1 Image not uploaded yet!</span>
+                                    <?php } ?>
+                                </div>
+                                <!-- first user details end -->
+                                <!-- second user details here  -->
+                                <div class="col-6" style="padding-right: 5px;padding-left: 5px;">
+                                    <?php
+                                    $color = "red";
+                                    $details_of_user_two = fetchRow('user', '`userId` = ' . $battle_total_users_data['player2_id'] . '');
+                                    ?>
+                                    <!-- profile image  of the user  -->
+
+                                    <a href="./profile/profile.php?id=<?= $details_of_user_two['userId'] ?>">
+
+                                        <span class="font-weight-bold 1" style="margin-right: 70px;"><?= $details_of_user_two['firstName'] . ' ' . $details_of_user_two['lastName']; ?></span></a>
+                                    <img src="dp/<?= $details_of_user_two['dp']; ?>" alt="Avatar4" class="w3-left w3-circle w3-margin-right profile-logo 1" style="float: inherit!important;margin: -30px!important;">
+                                    <hr class="w3-clear 2">
+                                    <?php if ($battle_total_users_data['player2_post'] != '') { ?>
+                                        <img width="100%" <?= ' src="data:image/jpeg;base64,' . base64_encode($battle_total_users_data['player2_post']) . '"' ?> class="w3-margin-bottom post_image" />
+                                    <?php } else {
+                                    ?>
+                                        <span class="font-weight-bold text-success">Player2 Image not uploaded yet!</span>
+                                    <?php } ?>
+                                </div>
                             </div>
-                            <!-- first user details end -->
-                            <!-- second user details here  -->
-                            <div class="col-6" style="padding-right: 5px;padding-left: 5px;">
-                                <?php
-                                $color = "red";
-                                $details_of_user_two = fetchRow('user', '`userId` = ' . $battle_total_users_data['player2_id'] . '');
-                                ?>
-                                <!-- profile image  of the user  -->
-
-                                <a href="./profile/profile.php?id=<?= $details_of_user_two['userId'] ?>">
-
-                                    <span class="font-weight-bold 1" style="margin-right: 70px;"><?= $details_of_user_two['firstName'] . ' ' . $details_of_user_two['lastName']; ?></span></a>
-                                <img src="dp/<?= $details_of_user_two['dp']; ?>" alt="Avatar4" class="w3-left w3-circle w3-margin-right profile-logo 1" style="float: inherit!important;margin: -30px!important;">
-                                <hr class="w3-clear 2">
-                                <?php if ($battle_total_users_data['player2_post'] != '') { ?>
-                                    <img width="100%" <?= ' src="data:image/jpeg;base64,' . base64_encode($battle_total_users_data['player2_post']) . '"' ?> class="w3-margin-bottom post_image" />
-                                <?php } else {
-                                ?>
-                                    <span class="font-weight-bold text-success">Player2 Image not uploaded yet!</span>
-                                <?php } ?>
-                            </div>
-                        </div>
                             <!--</div>-->
                             <!-- second user details end  -->
                             <!-- like dislike graph for battle start here-->
@@ -238,22 +238,24 @@ function getPost($from, $count)
                                     <div class="dislike_base-graph">
                                         <span>
                                             <button type="button" data-pid="<?= $list['postId'] ?>" class="like-btn w3-theme-d1 w3-margin-bottom" style="border: none;
-                                          background: #fff;"><i style="color:<?= $color ?>" id="<?= $list['postId'] ?>" class="fa fa-heart-o heart-graph text-danger"></i> &nbsp;<span id="like<?= $list['postId'] ?>" style="color:#000;"><?php totalLike($list['postId']); ?></span></button>
+                                          background: #fff;"><i style="color:<?= $color ?>" id="<?= $list['postId'] ?>" class="fa fa-heart-o heart-graph text-danger"></i> &nbsp;
+                                                <span class="like<?= $list['postId'] ?>" id="like<?= $list['postId'] ?>" style="color:#000;"><?= totalLike($list['postId']); ?></span></button>
                                             <!-- <i class="fa fa-heart-o heart-graph"></i> -->
                                         </span>
 
-                                        <div class="like-graph" style="width: <?= $like_percent; ?>%"><?= $like_percent; ?>%</div>
-                                        <div class="dislike-graph" style="width: <?= $hate_percent; ?>%"><?= $hate_percent; ?>%</div>
+                                        <div class="like-graph" id="graph1<?= $list['postId'] ?>" style="width: <?= $like_percent; ?>%"><?= $like_percent; ?>%</div>
+                                        <div class="dislike-graph" id="graph2<?= $list['postId'] ?>" style="width: <?= $hate_percent; ?>%"><?= $hate_percent; ?>%</div>
 
                                         <button type="button" data-pid="<?= $list['postId'] ?>" class="dislike-btn w3-theme-d1 w3-margin-bottom" style="border: none;
-                                          background: #fff;"><i style="color:<?= $color ?>" id="<?= $list['postId'] ?>" class="fa fa-heart heart-graph text-danger"></i> &nbsp;<span id="dislike<?= $list['postId'] ?>" style="color:#000;"><?php totaldisLike($list['postId']); ?></span></button>
+                                          background: #fff;"><i style="color:<?= $color ?>" id="<?= $list['postId'] ?>" class="fa fa-heart heart-graph text-danger"></i>
+                                            &nbsp;<span class="dislike<?= $list['postId'] ?>" id="dislike<?= $list['postId'] ?>" style="color:#000;"><?= totaldisLike($list['postId']); ?></span></button>
 
                                         <!-- <span><i class="fa fa-heart heart-graph"></i></span> -->
 
                                     </div>
                                 </div>
                                 <!-- // like dislike graph -->
-                                <h6 style="font-size: 12px;text-align:center;color:#7c7c7c;margin:0px;width:100%;"> <span class="text-success" ><?= mysqli_num_rows(fetchResult('likes','postId='.$list['postId'].''))+ mysqli_num_rows(fetchResult('dislikes','postId='.$list['postId'].'')) ?> votes</span> <span class="text-danger"><?= mysqli_num_rows(fetchResult('comments','postId='.$list['postId'].'')) ?> comment</span> </h6>
+                                <h6 style="font-size: 12px;text-align:center;color:#7c7c7c;margin:0px;width:100%;"> <span class="text-success"><?= mysqli_num_rows(fetchResult('likes', 'postId=' . $list['postId'] . '')) + mysqli_num_rows(fetchResult('dislikes', 'postId=' . $list['postId'] . '')) ?> votes</span> <span class="text-danger"><?= mysqli_num_rows(fetchResult('comments', 'postId=' . $list['postId'] . '')) ?> comment</span> </h6>
 
                                 <!-- comment button -->
                                 <div class="comment-section">

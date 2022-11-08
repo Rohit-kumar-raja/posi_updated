@@ -61,7 +61,7 @@ if (!isset($_SESSION['email'])) {
     </style>
     <!--// html code-->
 
-    <?php  include "feed.php" ?>
+    <?php include "feed.php" ?>
     <!-- post start -->
 
     <?php // include "dash-testing.php";
@@ -176,6 +176,9 @@ if (!isset($_SESSION['email'])) {
             postId.append("me", "<?php echo $_SESSION['id'] ?>");
             postId.append("name", "<?php echo $_SESSION['name'] ?>");
             postId.append("like-btn", "like");
+            postId.append("totaldisLikes", "totaldisLikes");
+
+
 
             $.ajax({
                 method: 'post',
@@ -185,49 +188,26 @@ if (!isset($_SESSION['email'])) {
                 contentType: false,
                 processData: false,
                 success: function(loadData) {
-                    if (loadData == "yes") {
-                        $("#" + pid).css("color", ""); // remove icon color
-                        //                                     get total like after deletion
-                        postId = new FormData();
-                        postId.append("pid", pid);
-                        postId.append("totalLikes", "totalLikes");
+                    $("#like" + pid).html(loadData);
 
-                        $.ajax({
-                            method: 'post',
-                            url: "database/like.php",
-                            cache: false,
-                            data: postId,
-                            contentType: false,
-                            processData: false,
-                            success: function(loadData) {
-                                $("#like" + pid).html(loadData);
-                            }
-                        });
+                    var player1_like = document.getElementsByClassName('like' + pid)[0]
+                    var player2_like = document.getElementsByClassName('dislike' + pid)[0]
 
-
-                    } else {
-
-                        $("#" + pid).css("color", "blue");
-                        //           get total like after insertion of like
-                        postId = new FormData();
-                        postId.append("pid", pid);
-                        postId.append("totalLikes", "totalLikes");
-
-                        $.ajax({
-                            method: 'post',
-                            url: "database/like.php",
-                            cache: false,
-                            data: postId,
-                            contentType: false,
-                            processData: false,
-                            success: function(loadData) {
-                                $("#like" + pid).html(loadData);
-                            }
-                        });
-                    }
+                    battle_user_one_and_two_total_like = Number(player1_like.innerHTML) + Number(player2_like.innerHTML);
+                    console.log(player1_like);
+                    user_one_total_like = Number(player1_like.innerHTML);
+                    user_two_total_like = Number(player2_like.innerHTML);
+                    var user_one_total_like_percentage = Math.round(user_one_total_like / battle_user_one_and_two_total_like * 100);
+                    var user_two_total_like_percentage = Math.round(user_two_total_like / battle_user_one_and_two_total_like * 100);
+                    document.getElementById('graph1' + pid).style.width = user_one_total_like_percentage + "%";
+                    document.getElementById('graph2' + pid).style.width = user_two_total_like_percentage + "%";
+                    document.getElementById('graph1' + pid).innerHTML = user_one_total_like_percentage + "%";
+                    document.getElementById('graph2' + pid).innerHTML = user_two_total_like_percentage + "%";
                 }
             });
         });
+
+
 
         //dislike
         $(".dislike-btn").click(function() {
@@ -239,7 +219,6 @@ if (!isset($_SESSION['email'])) {
             postId.append("me", "<?php echo $_SESSION['id'] ?>");
             postId.append("name", "<?php echo $_SESSION['name'] ?>");
             postId.append("dislike-btn", "dislike");
-
             $.ajax({
                 method: 'post',
                 url: "database/dislike.php",
@@ -248,46 +227,21 @@ if (!isset($_SESSION['email'])) {
                 contentType: false,
                 processData: false,
                 success: function(loadData) {
-                    if (loadData == "yes") {
-                        $("#" + pid).css("color", ""); // remove icon color
-                        //                                     get total like after deletion
-                        postId = new FormData();
-                        postId.append("pid", pid);
-                        postId.append("totaldisLikes", "totaldisLikes");
+                    $("#dislike" + pid).html(loadData);
+                    var player1_like = document.getElementsByClassName('like' + pid)[0]
+                    var player2_like = document.getElementsByClassName('dislike' + pid)[0]
 
-                        $.ajax({
-                            method: 'post',
-                            url: "database/dislike.php",
-                            cache: false,
-                            data: postId,
-                            contentType: false,
-                            processData: false,
-                            success: function(loadData) {
-                                $("#dislike" + pid).html(loadData);
-                            }
-                        });
+                    battle_user_one_and_two_total_like = Number(player1_like.innerHTML) + Number(player2_like.innerHTML);
+                    console.log(player1_like);
+                    user_one_total_like = Number(player1_like.innerHTML);
+                    user_two_total_like = Number(player2_like.innerHTML);
+                    var user_one_total_like_percentage = Math.round(user_one_total_like / battle_user_one_and_two_total_like * 100);
+                    var user_two_total_like_percentage = Math.round(user_two_total_like / battle_user_one_and_two_total_like * 100);
+                    document.getElementById('graph1' + pid).style.width = user_one_total_like_percentage + "%";
+                    document.getElementById('graph2' + pid).style.width = user_two_total_like_percentage + "%";
+                    document.getElementById('graph1' + pid).innerHTML = user_one_total_like_percentage + "%";
+                    document.getElementById('graph2' + pid).innerHTML = user_two_total_like_percentage + "%";
 
-
-                    } else {
-
-                        $("#dislike1" + pid).css("color", "orange");
-                        //           get total like after insertion of like
-                        postId = new FormData();
-                        postId.append("pid", pid);
-                        postId.append("totaldisLikes", "totalLikes");
-
-                        $.ajax({
-                            method: 'post',
-                            url: "database/dislike.php",
-                            cache: false,
-                            data: postId,
-                            contentType: false,
-                            processData: false,
-                            success: function(loadData) {
-                                $("#dislike" + pid).html(loadData);
-                            }
-                        });
-                    }
                 }
             });
         });
