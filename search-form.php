@@ -28,6 +28,7 @@ include "posi_header.php";
 <div id="search">
 
 </div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
 <script>
     function search() {
@@ -45,4 +46,39 @@ include "posi_header.php";
         xmlhttp.send();
 
     }
+
+
+
+    $(".request-btn").click(function() {
+   
+        var $this = $(this);
+        userId = $this.data("id");
+        userName = $this.data("name");
+        buttonName = "request";
+        callFun = new FormData();
+        callFun.append("buttonName", buttonName);
+        callFun.append("userId", userId);
+        // window.alert(userId);
+        callFun.append("userName", userName);
+
+        $.ajax({
+            method: 'post',
+            url: "functions.php",
+            cache: false,
+            data: callFun,
+            contentType: false, // error if both are absent in ajax code 
+            processData: false,
+
+            success: function(result) {
+                //                                                     window.open('home.php','_self');
+                // window.alert(result);
+                window.open('friends.php', '_self');
+            },
+            error: function(result) {
+                window.alert(" sorrry error {request}");
+            }
+        });
+
+
+    });
 </script>

@@ -71,6 +71,7 @@
 
                 $condition1 = '';
                 $condition2 = '';
+
                 $q = explode(" ", $a);
                 foreach ($q as $word) {
                     $condition1 .= "firstName LIKE '%" . mysqli_real_escape_string($conn, $word) . "%' OR ";
@@ -109,27 +110,26 @@
                             $t = $row['twitter'];
                             $l = $row['linkedIn'];
 
-                            echo "
-               <div class='col-md-3 col-6 mb-3'>
-               
-               <div class='card' style=''>
-               <img class='card-img-top' src='dp/{$dp}' alt='Card image' style=''>
-               <div class='card-body'>
-                 <h4 class='card-title'>{$fname} {$lname}</h4>                 
-                <div class='row'>
-                <div class='col-6'>
-                <a href='./profile/profile.php?id={$id}'> <p><button class='btn btn-success btn-sm'>View Profile</button></p></a>
-                </div>
-                <div class='col-6'>
-                <a id='request' href='#'><button data-id='{$row['userId']}'  class='request-btn btn btn-sm btn-info' >Follow</button>
-                </div>
-                </div>
-                  
-               
-              </div>
-             </div>  
-             </div>                            
-               ";
+            ?>
+                            <div class='col-md-3 col-6 mb-3'>
+                                <div class='card' style=''>
+                                    <img class='card-img-top' src='dp/<?= $dp ?>' alt='Card image' style=''>
+                                    <div class='card-body'>
+                                        <h4 class='card-title'><?= $fname . ' ' . $lname ?></h4>
+                                        <div class='row'>
+                                            <div class='col-6'>
+                                                <a href='./profile/profile.php?id=<?= $id ?>'>
+                                                    <p><button class='btn btn-success btn-sm'>View Profile</button></p>
+                                                </a>
+                                            </div>
+                                            <div class='col-6'>
+                                                <a id='request' href='#'><button data-id='<?= $row['userId'] ?>' class='request-btn btn btn-sm btn-info'>Follow</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+            <?php
                         }
                     } else
                         echo "<script>window.alert('sorry no such record')</script>";
