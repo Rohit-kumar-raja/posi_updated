@@ -14,12 +14,12 @@ if (isset($_POST['dislike-btn']) && isset($_POST['me']) && isset($_POST['pid']))
         //        if alreay liked the remove like echo yes for changing the color of like icon in output
 
         deletedisLike($pid, $me);
-        totaldisLike($pid);
+       echo  totaldisLike($pid);
         // for jquesry becoz return statement of php wont reflect in javascript(ajax) only   echo reflect the result in jaxa
     } else {
         //     if user dint like then add a like & echo no for changing the color of like icon in output
         insertdisLike($pid, $me, $name);
-        totaldisLike($pid);
+       echo totaldisLike($pid);
     }
 }
 
@@ -76,7 +76,7 @@ function deletedisLike($pid, $userId)
 function insertdisLike($pid, $userId, $name)
 {
     global $conn;
-    $query = "insert into dislikes(postId,dislikeBy,dislikeDate) values('$pid','$userId',NOW())";
+     $query = "insert into dislikes(postId,dislikeBy,dislikeDate) values('$pid','$userId',NOW())";
     $likes = mysqli_query($conn, $query);
     $notifFor = getdisUserId($pid);
     $msg = $name . "  disliked your post";

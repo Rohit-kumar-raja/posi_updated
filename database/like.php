@@ -15,11 +15,11 @@ if (isset($_POST['like-btn']) && isset($_POST['me']) && isset($_POST['pid'])) {
         //        if alreay liked the remove like echo yes for changing the color of like icon in output
 
         deleteLike($pid, $me);
-        totalLike($pid); // for jquesry becoz return statement of php wont reflect in javascript(ajax) only   echo reflect the result in jaxa
+       echo  totalLike($pid); // for jquesry becoz return statement of php wont reflect in javascript(ajax) only   echo reflect the result in jaxa
     } else {
         //     if user dint like then add a like & echo no for changing the color of like icon in output
         insertLike($pid, $me, $name);
-        totalLike($pid);
+      echo   totalLike($pid);
     }
 }
 
