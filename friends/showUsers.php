@@ -598,7 +598,7 @@ $strr=implode(',', $strr);
                     <div class='col-6 col-md-4 user-detail'>
 
                                <div class=' user-pic'> 
-                               <img src='../proImg/pro.jpg'>
+                               <img src='../dp/{$row['dp']}'>
                                 </div>
                         <div class=' user-name-buttons'> 
                         
