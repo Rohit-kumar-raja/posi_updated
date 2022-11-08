@@ -120,7 +120,7 @@ include './framwork/main.php';
       <div class="row" id="myDIV">
         <div class="col-3 col-xs-3 footer-icons">
           <a href="dashboard.php" class="footer-single-icon btn active" title="">
-            <i class="fa-solid fa-house  <?= array_search('dashboard.php', $page_name) != '' ? 'text-danger' : '' ?>"></i>
+            <i class="fa-solid fa-house  <?= array_search('dashboard.php', $page_name) != '' ? 'text-primary' : '' ?>"></i>
             <!-- <div class="hover-display">
                 <span>Home</span>
               </div>     -->
@@ -128,7 +128,7 @@ include './framwork/main.php';
         </div>
         <div class="col-3 col-xs-3 footer-icons">
           <a href="add_post.php" class="footer-single-icon btn" title="">
-            <i class="fa-solid fa-camera <?= array_search('add_post.php', $page_name) != '' ? 'text-danger' : '' ?>"></i>
+            <i class="fa-solid fa-camera <?= array_search('add_post.php', $page_name) != '' ? 'text-primary' : '' ?>"></i>
             <!-- <div class="hover-display">
                 <span>Post</span>
               </div> -->
@@ -136,7 +136,7 @@ include './framwork/main.php';
         </div>
         <div class="col-3 col-xs-3 footer-icons ">
           <a href="notification.php" class="footer-single-icon btn  " title="">
-            <i class="fa-solid fa-heart <?= array_search('notification.php', $page_name) != '' ? 'text-danger' : '' ?>">
+            <i class="fa-solid fa-heart <?= array_search('notification.php', $page_name) != '' ? 'text-primary' : '' ?>">
               <?php $notification_count=fetchResult('notifications','notificationFor='.$_SESSION['id'].' && notificationStatus="new"') ?>
             </i> <sup style="font-size: 10px ; margin-left: -8px;" class=" p-1 text-white bg-danger rounded-circle"><?= mysqli_num_rows($notification_count) ?></sup>
 
@@ -144,7 +144,7 @@ include './framwork/main.php';
         </div>
         <div class="col-3 col-xs-3 footer-icons">
           <a href="home.php" class="footer-single-icon btn" title="">
-            <i class="fa-solid fa-user <?= array_search('home.php', $page_name) != '' ? 'text-danger' : '' ?>"></i>
+            <i class="fa-solid fa-user <?= array_search('home.php', $page_name) != '' ? 'text-primary' : '' ?>"></i>
             <!-- <div class="hover-display">
                 <span>notify</span>
               </div> -->
