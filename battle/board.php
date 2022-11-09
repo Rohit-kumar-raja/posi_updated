@@ -115,7 +115,6 @@ include "battle_header.php";
                 <h3 class="text-center">Current Battle Competitors</h3>
                 <div class="row">
 
-                    <?php newUsers(); ?>
                     <?php battle(); ?>
                 </div>
             </div>
