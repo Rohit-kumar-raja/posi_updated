@@ -11,11 +11,31 @@
             <?php
             include("database/connection.php");
             $database = "posigraph_socialplexus";
+            include "framwork/main.php";
             mysqli_select_db($conn, $database);
 
             $a = $_GET['a'];
             $a = trim($a);
             //$b=str_replace(" ","%",$a);
+
+            function friend_is($userid)
+            {
+                $me = $_SESSION['id'];
+                $friends = false;
+                $frind_data = fetchResult('friends', 'userOne=' . $userid . ' or userTwo=' . $userid . '');
+                while ($friend_row = mysqli_fetch_array($frind_data)) {
+                    if ($friend_row['userOne'] == $me || $friend_row['userOne'] == $me) {
+                        $friends = true;
+                        break;
+                    } else {
+                        $friends = false;
+                    }
+                }
+                return $friends;
+            }
+
+
+
             if (strlen($a) == 0)
                 header("location:./home.php");
 
@@ -28,50 +48,44 @@
                         while ($row = mysqli_fetch_array($result)) {
                             $fname = $row['firstName'];
                             $lname = $row['lastName'];
-                            $dp = $row['dp'];
-                            $id = $row['userId'];
-                            $details = mysqli_query($conn, "select * from user_details where userid='$id'");
-                            $row = mysqli_fetch_array($details);
-                            $job = $row['job'];
-                            $city = $row['city'];
-                            $state = $row['state'];
-                            $country = $row['country'];
-                            $f = $row['facebook'];
-                            $i = $row['insta'];
-                            $t = $row['twitter'];
-                            $l = $row['linkedIn'];
+                            if (isset($row['dp']) && $row['dp'] != '') {
+                                $dp = $row['dp'];
+                            } else {
+                                if ($row['gender'] == 'male') {
+                                    $dp = 'default_male.png';
+                                } else {
+                                    $dp = 'default_female.png';
+                                }
+                            }
+            ?>
 
-                            echo "  
-                
-                  <div class='card' style='
-                  border: 2px dashed;'>
-                  <img src='dp/{$dp}' alt='John' style='width:200px' height='200px'>
-                  <h3 style='color: #3a768f;
-                  padding: 10px;
-                  text-align: center;
-                  font-weight: 600;'>{$fname} {$lname}</h3>                                                     
-                  
-                  <a href='./profile/profile.php?id={$id}'> <p style='text-align:center'><button class='btn btn-info'>View Profile</button></p></a>
-                </div>
-               ";
+                            <div class='col-md-3 col-6 mb-3'>
+                                <div class='card'>
+                                    <img class='card-img-top' src='dp/<?= $dp ?>' alt='Card image' style=''>
+                                    <div class='card-body'>
+                                        <h4 class='card-title'><?= $fname . ' ' . $lname ?></h4>
+                                        <div class='row'>
+                                            <div class='col-6'>
+                                                <a href='./profile/profile.php?id=<?= $id ?>'>
+                                                    <p><button class='btn btn-success btn-sm'>View Profile</button></p>
+                                                </a>
+                                            </div>
+                                            <div class='col-6'>
+                                                <a id='request' href='#'><button data-id='<?= $row['userId'] ?>' class='request-btn btn btn-sm btn-info'>Follow</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        <?php
                         }
-
-                        // <p style='color:green'>add: $city,$state,$country</p>
-                        // <p class='title'>{$job}</p>
-                        //  <a href='{$i}'><i class='fa fa-instagram'></i></a> 
-                        //  <a href='{$t}'><i class='fa fa-twitter'></i></a> 
-                        //  <a href='{$l}'><i class='a fa-linkedIn'></i></a> 
-                        //  <a href='{$f}'><i class='fa fa-facebook'></i></a> 
-
                     } else
                         echo "<script>window.alert('sorry no such record')</script>";
                 } else
                     mysqli_error($conn);
             } else {
-
                 $condition1 = '';
                 $condition2 = '';
-
                 $q = explode(" ", $a);
                 foreach ($q as $word) {
                     $condition1 .= "firstName LIKE '%" . mysqli_real_escape_string($conn, $word) . "%' OR ";
@@ -79,9 +93,7 @@
                 }
                 $condition1 = substr($condition1, 0, -4);
                 $condition2 = substr($condition2, 0, -4);
-
-                $query = "select * from user where " . $condition1 . " OR " . $condition2;
-                //    echo "<script>window.alert('{$query}')</script>";
+                $query = "select * from user where " . $condition1 . " OR " . $condition2 . " LIMIT 50";
                 $result = mysqli_query($conn, $query);
                 if ($result) {
                     if (mysqli_num_rows($result) >= 1) {
@@ -98,32 +110,33 @@
                                     $dp = 'default_female.png';
                                 }
                             }
-                            $id = $row['userId'];
-                            $details = mysqli_query($conn, "select * from user_details where userid='$id'");
-                            $row = mysqli_fetch_array($details);
-                            $job = $row['job'];
-                            $city = $row['city'];
-                            $state = $row['state'];
-                            $country = $row['country'];
-                            $f = $row['facebook'];
-                            $i = $row['insta'];
-                            $t = $row['twitter'];
-                            $l = $row['linkedIn'];
+                            $me = $_SESSION['id'];
+                            $request_user = fetchRow('friend_request', 'senderId=' . $me . ' && receiverId=' . $row['userId'] . '');
 
-            ?>
+
+                        ?>
                             <div class='col-md-3 col-6 mb-3'>
-                                <div class='card' style=''>
+                                <div class='card'>
                                     <img class='card-img-top' src='dp/<?= $dp ?>' alt='Card image' style=''>
                                     <div class='card-body'>
                                         <h4 class='card-title'><?= $fname . ' ' . $lname ?></h4>
                                         <div class='row'>
                                             <div class='col-6'>
                                                 <a href='./profile/profile.php?id=<?= $id ?>'>
-                                                    <p><button class='btn btn-success btn-sm'>View Profile</button></p>
+                                                    <p><button class='btn btn-success btn-sm'> <i class="fas fa-user"></i> View Profile</button></p>
                                                 </a>
                                             </div>
                                             <div class='col-6'>
-                                                <a id='request' href='#'><button data-id='<?= $row['userId'] ?>' class='request-btn btn btn-sm btn-info'>Follow</button>
+                                                <?php if (friend_is($row['userId'])) { ?>
+                                                    <a class="btn btn-sm btn-primary" href="#"> <i class='fas fa-user-friends'></i> Friends </a>
+                                                <?php } else if ($request_user != '') {
+                                                ?>
+                                                    <a class="btn btn-sm btn-secondary" href="#"> <i class="fas fa-user-check"></i> Request sent </a>
+
+                                                <?php } else { ?>
+                                                    <a class="btn btn-sm btn-info" href="#" onclick="follow_btn('<?= $row['userId']  ?>','request','<?= $row['firstName'] ?>')" id="follow"><i class="fas fa-user-plus"></i> Follow
+                                                    </a>
+                                                <?php } ?>
                                             </div>
                                         </div>
                                     </div>
@@ -143,5 +156,6 @@
     </div>
 
 </body>
+
 
 </html>

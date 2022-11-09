@@ -184,4 +184,3 @@ function error()
 {
     echo "sorry something went wrng";
 }
-?>

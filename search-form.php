@@ -16,7 +16,7 @@ include "posi_header.php";
     <hr>
     <div class="row">
         <div class="col-8">
-            <input type="text" placeholder="Search Here Your friends .. " id="srch_input" class="form-control">
+            <input onkeyup="search()" type="text" placeholder="Search Here Your friends .. " id="srch_input" class="form-control">
         </div>
         <div class="col-2">
             <button onclick="search()" id="srch" class="btn btn-success"><i class="fa fa-search" aria-hidden="true"></i>
@@ -36,7 +36,6 @@ include "posi_header.php";
         if (v == "")
             window.alert("please enter name or email")
         else
-
             // getting data fo infrastructure image and youtube video
             var xmlhttp = new XMLHttpRequest();
         xmlhttp.onreadystatechange = function() {
@@ -48,37 +47,17 @@ include "posi_header.php";
     }
 
 
+    function follow_btn(userId, buttonName, userName) {
+        const xhttp = new XMLHttpRequest();
+        xhttp.onload = function() {
+            document.getElementById("follow").innerHTML = this.responseText;
+        }
 
-    $(".request-btn").click(function() {
-   
-        var $this = $(this);
-        userId = $this.data("id");
-        userName = $this.data("name");
-        buttonName = "request";
         callFun = new FormData();
         callFun.append("buttonName", buttonName);
         callFun.append("userId", userId);
-        // window.alert(userId);
         callFun.append("userName", userName);
-
-        $.ajax({
-            method: 'post',
-            url: "functions.php",
-            cache: false,
-            data: callFun,
-            contentType: false, // error if both are absent in ajax code 
-            processData: false,
-
-            success: function(result) {
-                //                                                     window.open('home.php','_self');
-                // window.alert(result);
-                window.open('friends.php', '_self');
-            },
-            error: function(result) {
-                window.alert(" sorrry error {request}");
-            }
-        });
-
-
-    });
+        xhttp.open("POST", "friends/functions.php", true);
+        xhttp.send(callFun);
+    }
 </script>
