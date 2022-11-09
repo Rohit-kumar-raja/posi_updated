@@ -152,9 +152,6 @@ if (!isset($_SESSION['email'])) {
               </div>
             </div>
           </div>
-
-
-
           <div class="text-center"> <b style="font-size: 16px;">Uploads</b></div>
           <br>
           <div class="image-grid">

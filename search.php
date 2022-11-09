@@ -122,7 +122,7 @@
                                         <h4 class='card-title'><?= $fname . ' ' . $lname ?></h4>
                                         <div class='row'>
                                             <div class='col-6'>
-                                                <a href='./profile/profile.php?id=<?= $id ?>'>
+                                                <a href='./profile/profile.php?id=<?= $row['userId'] ?>'>
                                                     <p><button class='btn btn-success btn-sm'> <i class="fas fa-user"></i> View Profile</button></p>
                                                 </a>
                                             </div>
