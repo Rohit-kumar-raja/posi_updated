@@ -12,9 +12,9 @@ function image($userId)
   while ($row = mysqli_fetch_array($image)) {
     $img_id =  $row['postId'];
 ?>
-          <a class="centered" href=""> <i class="fas fa-trash-alt"></i></a>
-      <img src='imagePost/<?= $row['postImage'] ?>' class='<?= $row['postId'] ?>'>
-  
+    <!-- <a class="centered" href=""> <i class="fas fa-trash-alt"></i></a> -->
+    <img src='imagePost/<?= $row['postImage'] ?>' class='<?= $row['postId'] ?>'>
+
 <?php
   }
 }

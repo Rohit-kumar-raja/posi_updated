@@ -153,4 +153,6 @@ include './framwork/main.php';
       </div>
     </div>
   </div>
+  <?php include "feed.php" ?>
+
   <!-- fixed footer end -->

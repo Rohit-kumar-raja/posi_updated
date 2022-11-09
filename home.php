@@ -35,7 +35,7 @@
     }
   }
 </style>
-
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 <?php
 session_start();
 
@@ -47,7 +47,7 @@ if (!isset($_SESSION['email'])) {
   include("database/getMyImagePost.php");
   include("database/getMsgNotif.php");
   include "posi_header.php";
-  include "posi.php";
+
   $userid = $_GET['id'] == '' ? $_SESSION['id'] : $_GET['id'];
   $user = fetchRow('user', '`userId`= ' . $userid . '');
   $userDetail = fetchRow('user_details', '`userId`= ' . $userid . '');
@@ -59,7 +59,7 @@ if (!isset($_SESSION['email'])) {
   </style>
 
   <!-- profile section started -->
-  <div class="container-fluid">
+  <div class="container-fluid container">
     <div class="row ">
       <div class="col-lg-12 profile-section">
 
@@ -81,45 +81,92 @@ if (!isset($_SESSION['email'])) {
               <?php
               $one = $user['userId'];
 
-              $get_following = mysqli_num_rows(mysqli_query($conn, "SELECT * FROM `friends` WHERE `userOne`='$one' || `userTwo`='$one'"));
-              $get_follower = mysqli_num_rows(mysqli_query($conn, "select receiverId from friend_request where senderId='$one'"));
+              $get_following = mysqli_query($conn, "SELECT * FROM `friends` WHERE `userOne`='$one' || `userTwo`='$one'");
+              $get_follower = mysqli_query($conn, "select receiverId from friend_request where senderId='$one'");
               ?>
-              <!-- <div>
-                  <?php echo "<a class='btn btn-info text-light mr-2'>Following $get_following</a>" . "<a class='btn btn-info text-light'>Followers $get_follower</a>" ?>
-                </div>  -->
-              <div>
-                <div class="row">
-                  <div class="col-6">
-                    <div><a class="btn  text-light mr-2 text-dark font-weight-bold"> <b><?php echo $get_following ?></b>
-                        <br>Following</a></div>
-                  </div>
-                  <div class="col-6">
-                    <div><a class="btn  text-light text-dark font-weight-bold"> <b><?php echo $get_follower ?></b> <br>
-                        Followers</a></div>
+              <!-- for following modal  -->
+
+              <!-- Modal -->
+              <div class="modal fade" id="following" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLabel"> All Following</h5>
+                      <a type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">&times;</i></a>
+                    </div>
+                    <div class="modal-body">
+                      <?php while ($following = mysqli_fetch_array($get_following)) {
+                        if ($following['userOne'] != $_SESSION['id']) {
+                          $row =  fetchRow('user', 'userId=' . $following['userOne'] . '');
+                        }
+                        if($following['userTwo'] != $_SESSION['id']){
+                          $row =  fetchRow('user', 'userId=' . $following['userTwo'] . '');
+
+                        }
+                      ?>
+                          <div class='alert alert-secondary show rounded-pill'>
+                            <a class="text-primary" href='home.php?id=<?= $row['userId'] ?>'> <img width="50px" class="rounded-circle" src='dp/<?= $row['dp'] ?>' /></a>
+                            <a href='home.php?id=<?= $row['userId'] ?>' class='w3-bar-item w3-button '><?= $row['firstName'] . " " . $row['lastName'] ?></a>
+                          </div>
+                      <?php }
+                       ?>
+                    </div>
                   </div>
                 </div>
-
-
               </div>
-              <!-- <span>Digital / Design Consultant</span> -->
-
-            </div>
-            <p style="font-size: 16px;">Uploads</p>
-            <div class="profile-gallery-images">
-
+              <!-- for following modal end -->
               <div class="row">
+                <div class="col-6">
+                  <div><a class="btn  text-light mr-2 text-dark font-weight-bold" data-bs-toggle="modal" data-bs-target="#following"> <b><?php echo mysqli_num_rows($get_following) ?></b>
+                      <br>Following</a></div>
+                </div>
+
+                <!-- for follower modal -->
+                <!-- Modal -->
+                <div class="modal fade" id="follower" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">All Follower</h5>
+                        <a type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">&times;</i></a>
+                      </div>
+                      <div class="modal-body">
+                        <?php while ($follower = mysqli_fetch_array($get_follower)) {
+                          $row =  fetchRow('user', 'userId=' . $follower['receiverId'] . '');
+                        ?>
+                          <div class='alert alert-secondary show rounded-pill'>
+                            <a class="text-primary" href='home.php?id=<?= $row['userId'] ?>'> <img width="50px" class="rounded-circle" src='dp/<?= $row['dp'] ?>' /></a>
+                            <a href='home.php?id=<?= $row['userId'] ?>' class='w3-bar-item w3-button '><?= $row['firstName'] . " " . $row['lastName'] ?></a>
+                          </div>
+                        <?php } ?>
+                      </div>
+
+                    </div>
+                  </div>
+                </div>
+                <!-- follower modal end  -->
+                <div class="col-6">
+                  <div><a class="btn  text-light text-dark font-weight-bold" data-bs-toggle="modal" data-bs-target="#follower"> <b><?php echo mysqli_num_rows($get_follower) ?></b> <br>
+                      Followers</a></div>
+                </div>
               </div>
             </div>
-            <div class="image-grid">
-              <?php image($userid); ?>
-            </div>
-            <!-- // added test -->
           </div>
+
+
+
+          <div class="text-center"> <b style="font-size: 16px;">Uploads</b></div>
+          <br>
+          <div class="image-grid">
+            <?php image($userid); ?>
+          </div>
+          <!-- // added test -->
         </div>
       </div>
     </div>
   </div>
   </div>
+
   <!-- end profile section -->
   </body>
 

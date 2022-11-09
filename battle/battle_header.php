@@ -152,9 +152,6 @@ include '../framwork/main.php';
       </div>
     </div>
   </div>
+  <?php include "posi.php" ?>
 
-  <br>
-  <br>
-
-  <hr class="border">
   <!-- fixed footer end -->

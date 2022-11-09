@@ -61,7 +61,6 @@ if (!isset($_SESSION['email'])) {
     </style>
     <!--// html code-->
 
-    <?php include "feed.php" ?>
     <!-- post start -->
 
     <?php // include "dash-testing.php";
