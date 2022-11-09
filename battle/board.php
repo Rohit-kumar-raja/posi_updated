@@ -112,7 +112,7 @@ include "battle_header.php";
 
         <div class="row">
             <div class="col-md-12 all-user" style="margin-top: 60px;">
-                <h3  class="text-center" >Current Battle Competitors</h3>
+                <h3 class="text-center">Current Battle Competitors</h3>
                 <div class="row">
 
                     <?php newUsers(); ?>
@@ -123,8 +123,9 @@ include "battle_header.php";
 
         <div class="row">
             <div class="col-md-12 all-user" style="margin-top: 60px;">
-                <h3 class="text-center" >Suggestion For Battle</h3>
-                <div class="row">
+                <h3 class="text-center">Suggestion For Battle</h3>
+                <input style="width: 300px;" onkeyup="search(this.value)" class="form-control form-control-sm float-right mr-5 " placeholder="Search Battle Friend .." type="text">
+                <div class="row" id="data">
                     <?php newUsers(); ?>
                 </div>
             </div>
@@ -153,6 +154,20 @@ include "battle_header.php";
 </body>
 
 <script>
+    function search(v) {
+
+        if (v != "")
+
+            // getting data fo infrastructure image and youtube video
+            var xmlhttp = new XMLHttpRequest();
+        xmlhttp.onreadystatechange = function() {
+            document.getElementById("data").innerHTML = this.responseText;
+        }
+        xmlhttp.open("GET", 'showUsers.php?search=' + v, true);
+        xmlhttp.send();
+
+    }
+
     function myFunction(id) {
         var x = document.getElementById(id);
         if (x.className.indexOf("w3-show") == -1) {

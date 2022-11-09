@@ -13,7 +13,11 @@ function image($userId)
     $img_id =  $row['postId'];
 ?>
     <!-- <a class="centered" href=""> <i class="fas fa-trash-alt"></i></a> -->
-    <img src='imagePost/<?= $row['postImage'] ?>' class='<?= $row['postId'] ?>'>
+    <div class="col-6 col-md-3">
+      <a href="dashboard.php?post_id=<?= $row['postId'] ?>&post_type=">
+        <img src='imagePost/<?= $row['postImage'] ?>' class=' img-fluid <?= $row['postId'] ?>'>
+      </a>
+    </div>
 
 <?php
   }

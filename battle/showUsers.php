@@ -29,6 +29,113 @@ mysqli_select_db($conn, $database);
 
 $me = $_SESSION['id'];
 
+if (isset($_GET['search']) && $_GET['search'] != '') {
+  search_new_user($_GET['search']);
+}
+function search_new_user($search)
+{
+  global $conn, $me;
+  $i = 0;
+  $j = 0;
+  $friendId[] = 0;
+  $batId[] = 0;
+
+  //when someone's rqst received by me get Id from userTwo
+  $id = "select player1_id from battle where player2_id=$me && status = '1'";
+  $sender = mysqli_query($conn, $id);
+  if ($sender) {
+    if (mysqli_num_rows($sender) >= 1) {
+      while ($row = mysqli_fetch_array($sender)) {
+        $friendId[$i] = $row['player1_id'];
+        $i++;
+      }
+    }
+  } else
+    mysqli_error($conn);
+
+  //when someone receive my battle get Id of user
+  $id = "select player2_id from battle where player1_id=$me && status = '1'";
+  $receiver = mysqli_query($conn, $id);
+  if ($receiver) {
+    if (mysqli_num_rows($receiver) >= 1) {
+      while ($row = mysqli_fetch_array($receiver)) {
+
+        $friendId[$i] = $row['player2_id'];
+
+        $i++;
+      }
+    }
+  } else
+    mysqli_error($conn);
+
+  $str = implode(',', $friendId);
+  //  echo$str; 
+  /////////////////////////////////////////////////////////////////////////////////////////
+  // friend without any scenario
+  // friend not requested 
+  $id = "select * from friends where userOne=$me && userTwo NOT IN($str)";
+  $sender = mysqli_query($conn, $id);
+  if ($sender) {
+    if (mysqli_num_rows($sender) >= 1) {
+      while ($row = mysqli_fetch_array($sender)) {
+        $batId[$j] = $row['userTwo'];
+        $j++;
+      }
+    }
+  } else
+    mysqli_error($conn);
+
+  //friend not received
+  $id = "select * from friends where userTwo=$me && userOne NOT IN($str)";
+  $receiver = mysqli_query($conn, $id);
+  if ($receiver) {
+    if (mysqli_num_rows($receiver) >= 1) {
+      while ($row = mysqli_fetch_array($receiver)) {
+
+        $batId[$j] = $row['userOne'];
+        $j++;
+      }
+    }
+  } else
+    mysqli_error($conn);
+  $str11 = implode(',', $batId);
+  //  echo $str11;
+  /////////////////////////////////////////////////////////////////////////////////////////
+  $query = " select userId ,firstName ,dp from user where userId IN($str11) && (firstName LIKE '%".$search."%' || lastName LIKE '%".$search."%' )";
+  $newUser = mysqli_query($conn, $query);
+  if ($newUser) {
+    if (mysqli_num_rows($newUser) >= 1) {
+      while ($row = mysqli_fetch_array($newUser)) {
+        echo "
+                    
+                    <div class='col-6 col-md-4 user-detail'>
+
+                               <div class='col-sm-4 user-pic'> 
+                               <img src='../dp/{$row['dp']}'> 
+                               </div>
+                        <div class='col-sm-7 user-name-buttons'> 
+                        
+                             <div class=' row name'>
+                                  <a href='../home.php?id={$row['userId']}'><p style='margin:10px 10px;'>{$row['firstName']}</p></a>
+                             </div>
+                             
+                           <div class='row btn'>
+                             <a id='request' href='../add_request.php?pid={$row['userId']}' target='_blank'><button data-id='{$row['userId']}' data-name='{$row['firstName']}' class='request-btn' >Request</button>
+                             </a>
+                            </div>
+
+                        </div>
+
+                   </div>
+                 
+                  ";
+      }
+    }
+  } else
+    mysqli_error($conn);
+}
+
+
 function newUsers()
 {
   global $conn, $me;
