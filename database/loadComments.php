@@ -16,7 +16,7 @@ if (isset($_POST['comment-btn'])) {
     right: 6%;
     background: white;font-size: 16px;
     color: #d1d1d1;
-"><i class="fa fa-times"></i></button></span>
+"><i  class="fas fa-times-circle text-dark"></i></button></span>
 
 
     <div id="comment-like-div" style="background:#fff; box-shadow:0px 0px 100px 5px white;">
