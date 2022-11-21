@@ -13,7 +13,7 @@ mysqli_select_db($conn, $database);
 
 // graph percentange
 ?>
-<div class="container">
+<div class="container" style="padding-left:0px!important;padding-right:0px!important;">
 
 
     <?php
