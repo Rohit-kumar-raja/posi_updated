@@ -116,7 +116,7 @@ mysqli_select_db($conn, $database);
                                 ?>
                                 <div style="width:95%;margin:0 auto;">
                                     <div class="dislike_base-graph">
-                                        <button type="button" data-pid="<?= $battle_total_users_data['player1_id'] ?>" data-bid="<?= $battle_total_users_data['id'] ?>" class="p1batlike w3-theme-d1 w3-margin-bottom" style="border: none;   background: #fff;">
+                                        <button type="button" data-pid="<?= $battle_total_users_data['player1_id'] ?>" data-bid="<?= $battle_total_users_data['id'] ?>" class="p1batlike w3-theme-d1" style="border: none;   background: #fff;">
                                             <i style="color:<?= $color ?>" id="<?= $battle_total_users_data['player1_id'] ?>" class="fa fa-heart-o heart-graph text-danger"></i>
 
                                             <span class="p1batlike<?= $battle_total_users_data['id'] ?>" id="p1batlike<?= $battle_total_users_data['player1_id'] ?>" style="color:#000;"><?= $user_one_total_like ?></span>
@@ -124,7 +124,7 @@ mysqli_select_db($conn, $database);
                                         <div class="like-graph" id="graph1<?= $battle_total_users_data['id'] ?>" style="width:<?= $user_one_total_like_percentage; ?>%"><?= $user_one_total_like_percentage; ?>%</div>
                                         <div class="dislike-graph" id="graph2<?= $battle_total_users_data['id'] ?>" style="width:<?= $user_two_total_like_percentage; ?>%"><?= $user_two_total_like_percentage; ?>%</div>
 
-                                        <button type="button" data-pid="<?= $battle_total_users_data['player2_id'] ?>" data-bid="<?= $battle_total_users_data['id'] ?>" class="p2batlike w3-theme-d1 w3-margin-bottom" style="border: none; background: #fff;">
+                                        <button type="button" data-pid="<?= $battle_total_users_data['player2_id'] ?>" data-bid="<?= $battle_total_users_data['id'] ?>" class="p2batlike w3-theme-d1" style="border: none; background: #fff;">
                                             <i style="color:<?= $color ?>" id="<?= $battle_total_users_data['player2_id'] ?>" class="fa fa-heart heart-graph text-danger"></i>
 
                                             <span class="p2batlike<?= $battle_total_users_data['id'] ?>" id="p2batlike<?= $battle_total_users_data['player2_id'] ?>" style="color:#000;"><?= $user_two_total_like ?></span>
