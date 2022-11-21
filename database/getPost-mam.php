@@ -259,7 +259,7 @@ mysqli_select_db($conn, $database);
                                     <div style="position:relative;width: 95%;margin: 0 auto;">
                                         <div class="dislike_base-graph">
                                             <span>
-                                                <button type="button" data-pid="<?= $list['postId'] ?>" class="like-btn w3-theme-d1 w3-margin-bottom" style="border: none;
+                                                <button type="button" data-pid="<?= $list['postId'] ?>" class="like-btn w3-theme-d1 " style="border: none;
                                           background: #fff;"><i style="color:<?= $color ?>" id="<?= $list['postId'] ?>" class="fa fa-heart-o heart-graph text-danger"></i> &nbsp;
                                                     <span class="like<?= $list['postId'] ?>" id="like<?= $list['postId'] ?>" style="color:#000;"><?= totalLike($list['postId']); ?></span></button>
                                                 <!-- <i class="fa fa-heart-o heart-graph"></i> -->
@@ -268,7 +268,7 @@ mysqli_select_db($conn, $database);
                                             <div class="like-graph" id="graph1<?= $list['postId'] ?>" style="width: <?= $like_percent; ?>%"><?= $like_percent; ?>%</div>
                                             <div class="dislike-graph" id="graph2<?= $list['postId'] ?>" style="width: <?= $hate_percent; ?>%"><?= $hate_percent; ?>%</div>
 
-                                            <button type="button" data-pid="<?= $list['postId'] ?>" class="dislike-btn w3-theme-d1 w3-margin-bottom" style="border: none;
+                                            <button type="button" data-pid="<?= $list['postId'] ?>" class="dislike-btn w3-theme-d1 " style="border: none;
                                           background: #fff;"><i style="color:<?= $color ?>" id="<?= $list['postId'] ?>" class="fa fa-heart heart-graph text-danger"></i>
                                                 &nbsp;<span class="dislike<?= $list['postId'] ?>" id="dislike<?= $list['postId'] ?>" style="color:#000;"><?= totaldisLike($list['postId']); ?></span></button>
 
@@ -363,19 +363,19 @@ mysqli_select_db($conn, $database);
 
                             <p><?= $list['postContent'] ?></p>
 
-                            <button type="button" data-pid="<?= $list['postId'] ?>" class="  like-btn w3-button w3-theme-d1 w3-margin-bottom">
+                            <button type="button" data-pid="<?= $list['postId'] ?>" class="  like-btn w3-button w3-theme-d1 ">
                                 <i style="color:<?= $color ?>" id="<?= $list['postId'] ?>" class="fa fa-thumbs-up"></i> &nbsp;
                                 <span id="like<?= $list['postId'] ?>">
                                     <?php totalLike($list['postId']); ?></span></button>
 
                             <!-- ajit added -->
-                            <button type="button" data-pid="<?= $list['postId'] ?>" class="  dislike-btn w3-button w3-theme-d1 w3-margin-bottom">
+                            <button type="button" data-pid="<?= $list['postId'] ?>" class="  dislike-btn w3-button w3-theme-d1 ">
                                 <i style="color:<?= $color ?>" id="<?= $list['postId'] ?>" class="fa fa-thumbs-up"></i> &nbsp;
                                 <span id="dislike<?= $list['postId'] ?>">
                                     <?php totaldisLike($list['postId']); ?></span></button>
                             <!--// ajit added -->
 
-                            <button type="button" data-pid="<?= $list['postId'] ?>" class="comment-btn w3-button w3-theme-d2 w3-margin-bottom"><i class="fa fa-comment"></i> &nbsp;Comment</button>
+                            <button type="button" data-pid="<?= $list['postId'] ?>" class="comment-btn w3-button w3-theme-d2 "><i class="fa fa-comment"></i> &nbsp;Comment</button>
 
                         </div>
 
@@ -393,19 +393,19 @@ mysqli_select_db($conn, $database);
                             <img src="<?= 'imagePost/' . $list['postImage'] ?>" style="width:100%" class="w3-margin-bottom">
 
 
-                            <button type="button" data-pid="<?= $list['postId'] ?>" class="like-btn w3-button w3-theme-d1 w3-margin-bottom">
+                            <button type="button" data-pid="<?= $list['postId'] ?>" class="like-btn w3-button w3-theme-d1 ">
                                 <i style="color:<?= $color ?>" id="<?= $list['postId'] ?>" class="fa fa-thumbs-up"></i> &nbsp;
                                 <span id="like<?= $list['postId'] ?>">
                                     <?php totalLike($list['postId']); ?></span></button>
 
                             <!-- ajit added -->
-                            <button type="button" data-pid="<?= $list['postId'] ?>" class="dislike-btn w3-button w3-theme-d1 w3-margin-bottom">
+                            <button type="button" data-pid="<?= $list['postId'] ?>" class="dislike-btn w3-button w3-theme-d1 ">
                                 <i style="color:<?= $color ?>" id="<?= $list['postId'] ?>" class="fa fa-thumbs-up"></i> &nbsp;
                                 <span id="dislike<?= $list['postId'] ?>">
                                     <?php totaldisLike($list['postId']); ?></span></button>
                             <!-- // ajit added -->
 
-                            <button type="button" data-pid="<?= $list['postId'] ?>" class="comment-btn w3-button w3-theme-d2 w3-margin-bottom"><i class="fa fa-comment"></i> &nbsp;Comment</button>
+                            <button type="button" data-pid="<?= $list['postId'] ?>" class="comment-btn w3-button w3-theme-d2 "><i class="fa fa-comment"></i> &nbsp;Comment</button>
                         </div>
 
         <?php }
