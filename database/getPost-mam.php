@@ -538,7 +538,7 @@ mysqli_select_db($conn, $database);
             .profile-logo {
                 width: 37px;
                 border-radius: 50%;
-                margin-bottom: 8px;
+                margin-bottom: 5px;
             }
 
             #dropdown {
