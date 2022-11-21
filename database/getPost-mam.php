@@ -202,7 +202,8 @@ mysqli_select_db($conn, $database);
                                                 <span class="font-weight-bold"><?= $user['firstName'] . ' ' . $user['lastName'] ?> </span>
                                             </a>
                                         </div>
-                                        <div class="col-2">
+
+                                        <!-- <div class="col-2">
                                             <div class="dropdown">
                                                 <a class=" p-1" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                     <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
@@ -214,7 +215,8 @@ mysqli_select_db($conn, $database);
                                                     <?php } ?>
                                                 </div>
                                             </div>
-                                        </div>
+                                        </div> -->
+
                                     </div>
 
 
