@@ -52,7 +52,7 @@ if (!isset($_SESSION['email'])) {
                 <div onclick="seeNotification(<?= $row['notificationId'] ?>)" class='alert alert-<?= $row['notificationStatus'] == 'new' ? 'success' : 'secondary' ?>  show rounded-pill'>
                     <a onclick="seeNotification(<?= $row['notificationId'] ?>)" class="text-primary" href='home.php?id=<?= $users_by_data['userId'] ?>'> <img width="50px" class="rounded-circle" src='dp/<?= $my_img ?>' /></a>
                     <a onclick="seeNotification(<?= $row['notificationId'] ?>)" href='home.php?id=<?= $users_by_data['userId'] ?>' class='w3-bar-item w3-button '><?= $row['notificationMessage']==''?'go to post':$row['notificationMessage'] ?></a> - 
-                    <a onclick="seeNotification(<?= $row['notificationId'] ?>)" class="text-primary" href="dashboard.php?post_id=<?= $row['postId'] ?>&post_type=<?= $row['post_type'] ?>"><?= $post_data['postContent'] == '' ? '' : $post_data['postContent'] ?></a>
+                    <a onclick="seeNotification(<?= $row['notificationId'] ?>)" class="text-primary" href="dashboard.php?post_id=<?= $row['postId'] ?>&post_type=<?= $row['post_type'] ?>"><?= $post_data['postContent'] == '' ? 'go to post' : $post_data['postContent'] ?></a>
                 </div>
             <?php } ?>
         </div>
