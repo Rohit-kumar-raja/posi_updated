@@ -101,7 +101,13 @@ function search_new_user($search)
   $str11 = implode(',', $batId);
   //  echo $str11;
   /////////////////////////////////////////////////////////////////////////////////////////
-  $query = " select userId ,firstName ,dp from user where userId IN($str11) && (firstName LIKE '%".$search."%' || lastName LIKE '%".$search."%' )";
+  if($search==''){
+    $query = " select userId ,firstName ,dp from user where userId IN($str11)";
+
+  }else{
+    $query = " select userId ,firstName ,dp from user where userId IN($str11) && (firstName LIKE '%".$search."%' || lastName LIKE '%".$search."%' )";
+
+  }
   $newUser = mysqli_query($conn, $query);
   if ($newUser) {
     if (mysqli_num_rows($newUser) >= 1) {
