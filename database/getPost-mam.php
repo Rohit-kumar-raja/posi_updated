@@ -204,11 +204,11 @@ mysqli_select_db($conn, $database);
                                         </div>
 
                                         <div class="col-2">
-                                            <div class="dropdown">
+                                            <div class="dropdown" >
                                                 <a class=" p-1" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                     <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
                                                 </a>
-                                                <div id="dropdown" class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                <div id="dropdown" class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="left: -115px!important;">
                                                     
                                                     <?php if ($user['userId'] == $_SESSION['id']) { ?>
                                                         <a class="dropdown-item" href="./database/deletePost.php?postId=<?= $list['postId'] ?>">Delete Image</a>
