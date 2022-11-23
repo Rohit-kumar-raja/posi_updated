@@ -115,7 +115,7 @@ include "battle_header.php";
                 <h3 class="text-center">Current Battle Competitors</h3>
                 <div class="row">
 
-                    <?php  //newUsers();
+                    <?php //newUsers();
                     ?>
                     <?php battle(); ?>
                 </div>
@@ -129,10 +129,11 @@ include "battle_header.php";
                     <div class="col-sm-12">
                     <input style="width: 300px;" onkeyup="search(this.value)" class="form-control form-control-sm float-right mr-5 " placeholder="Search Battle Friend .." type="text">
                     </div>
+                    
                     <div class="col-sm-12">
                     <div class="row" id="data">
                     <?php newUsers(); ?>
-                </div>
+                    </div>
                     </div>
                 </div>
                 
