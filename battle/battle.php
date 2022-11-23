@@ -125,10 +125,18 @@ include "battle_header.php";
         <div class="row">
             <div class="col-md-12 all-user" style="margin-top: 60px;">
                 <h3 class="text-center">Suggestion For Battle</h3>
-                <!-- <input style="width: 300px;" onkeyup="search(this.value)" class="form-control form-control-sm float-right mr-5 " placeholder="Search Battle Friend .." type="text"> -->
-                <div class="row" id="data">
+                <div class="row">
+                    <div class="col-sm-12">
+                    <input style="width: 300px;" onkeyup="search(this.value)" class="form-control form-control-sm float-right mr-5 " placeholder="Search Battle Friend .." type="text">
+                    </div>
+                    <div class="col-sm-12">
+                    <div class="row" id="data">
                     <?php newUsers(); ?>
                 </div>
+                    </div>
+                </div>
+                
+                
             </div>
         </div>
 
