@@ -48,7 +48,7 @@ if (!isset($_SESSION['email'])) {
         }
 
         #dynamic {
-            border: 1px solid;
+            /* border: 1px solid; */
             margin-top: 59px;
             padding: 10px;
         }
