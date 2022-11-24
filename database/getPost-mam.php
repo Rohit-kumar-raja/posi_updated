@@ -142,7 +142,7 @@ mysqli_select_db($conn, $database);
             // battle post ends here
 
             //  for single for showing this all contest
-            if ($post == "yes") {
+            if ($post == "yes" || $post != "yes") {
 
                 //          fetch all post of id and his/her friend and show it
                 //          get all friends id
