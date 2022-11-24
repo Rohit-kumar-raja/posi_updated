@@ -132,7 +132,20 @@ if (!isset($_SESSION['email'])) {
                             &nbsp;Select photo</button><br> -->
 
                         <input onchange="image_check(this,1024)" accept="image/*" type='file' id="cstmbtn" />
-
+                        <script>
+                            function image_check(element, uploadImageSize) {
+                                alert(uploadImageSize);
+                                var imgpath = element;
+                                if (!imgpath.value == "") {
+                                    var img = imgpath.files[0].size;
+                                    var imgsize = Math.round(img / 1024);
+                                    if (imgsize > uploadImageSize) {
+                                        alert("Image size is " + imgsize + " KB please Upload  Image smaller than " + uploadImageSize + " KB");
+                                        element.value = "";
+                                    }
+                                }
+                            }
+                        </script>
                         <img id="blah" src="#" />
 
                         <script>
@@ -145,7 +158,7 @@ if (!isset($_SESSION['email'])) {
                         </script>
 
                         <textarea id="content" class="form-control" placeholder="Caption..." style="resize:none;border:none;"></textarea>
-                        <input  type="file" id="file" style="display:none" accept=".png,.jpg,.gif,.bmp,.jpeg,.mp4,.3gp,.mvk,.mov">
+                        <input type="file" id="file" style="display:none" accept=".png,.jpg,.gif,.bmp,.jpeg,.mp4,.3gp,.mvk,.mov">
                         <!-- <span id="fileName" class="badge bg-warning mt-1"> png / gif / jpg / jpeg / video(5MB)</span> -->
                         <span id="fileName" class="badge  mt-1"> Crop your image in 1:1 ratio before posting</span>
 
@@ -512,20 +525,7 @@ if (!isset($_SESSION['email'])) {
 
     </html>
 
-    <script>
-        function image_check(element, uploadImageSize) {
-            alert(uploadImageSize);
-            var imgpath = element;
-            if (!imgpath.value == "") {
-                var img = imgpath.files[0].size;
-                var imgsize = Math.round(img / 1024);
-                if (imgsize > uploadImageSize) {
-                    alert("Image size is " + imgsize + " KB please Upload  Image smaller than " + uploadImageSize + " KB");
-                    element.value = "";
-                }
-            }
-        }
-    </script>
+
 
 <?php
 
