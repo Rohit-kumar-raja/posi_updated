@@ -514,6 +514,7 @@ if (!isset($_SESSION['email'])) {
 
     <script>
         function image_check(element, uploadImageSize) {
+            alert(uploadImageSize);
             var imgpath = element;
             if (!imgpath.value == "") {
                 var img = imgpath.files[0].size;
