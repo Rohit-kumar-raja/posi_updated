@@ -119,7 +119,7 @@ if (!isset($_SESSION['email'])) {
                 <h6 class="h4" style="
     font-size: 18px;
     text-align:center;
-"> Solo Post
+"> Solo Post (Image Size Less Than <span class="text-danger">1MB</span> )
                     <?php // echo $_SESSION['name']
                     ?>
                 </h6>
