@@ -132,24 +132,12 @@ if (!isset($_SESSION['email'])) {
                             &nbsp;Select photo</button><br> -->
 
                         <input onchange="image_check(this,1024)" accept="image/*" type='file' id="cstmbtn" />
-                        <script>
-                            function image_check(element, uploadImageSize) {
-                                alert(uploadImageSize);
-                                var imgpath = element;
-                                if (!imgpath.value == "") {
-                                    var img = imgpath.files[0].size;
-                                    var imgsize = Math.round(img / 1024);
-                                    if (imgsize > uploadImageSize) {
-                                        alert("Image size is " + imgsize + " KB please Upload  Image smaller than " + uploadImageSize + " KB");
-                                        element.value = "";
-                                    }
-                                }
-                            }
-                        </script>
+
                         <img id="blah" src="#" />
 
                         <script>
                             cstmbtn.onchange = evt => {
+                                image_check(this,1024);
                                 const [file] = cstmbtn.files
                                 if (file) {
                                     blah.src = URL.createObjectURL(file)
@@ -524,7 +512,20 @@ if (!isset($_SESSION['email'])) {
     </body>
 
     </html>
-
+    <script>
+        function image_check(element, uploadImageSize) {
+            alert(uploadImageSize);
+            var imgpath = element;
+            if (!imgpath.value == "") {
+                var img = imgpath.files[0].size;
+                var imgsize = Math.round(img / 1024);
+                if (imgsize > uploadImageSize) {
+                    alert("Image size is " + imgsize + " KB please Upload  Image smaller than " + uploadImageSize + " KB");
+                    element.value = "";
+                }
+            }
+        }
+    </script>
 
 
 <?php
