@@ -137,7 +137,8 @@ if (!isset($_SESSION['email'])) {
 
                         <script>
                             cstmbtn.onchange = evt => {
-                                image_check(this,1024);
+                                elements=document.getElementById('cstmbtn');
+                                image_check(elements,1024);
                                 const [file] = cstmbtn.files
                                 if (file) {
                                     blah.src = URL.createObjectURL(file)
