@@ -40,7 +40,7 @@ if (!isset($_SESSION['email'])) {
 
         #comment-like-div {
             background-color: white;
-            height: 60%;
+            height: 67%;
             overflow-x: hidden;
             overflow-y: scroll;
             padding: 10px;
@@ -49,7 +49,7 @@ if (!isset($_SESSION['email'])) {
 
         #dynamic {
             /* border: 1px solid; */
-            margin-top: 59px;
+            /* margin-top: 59px; */
             padding: 10px;
         }
         
