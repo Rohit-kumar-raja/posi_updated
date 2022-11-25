@@ -503,6 +503,16 @@ if (!isset($_SESSION['email'])) {
     <!-- Latest compiled JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 
+    <script>
+    $(document).ready(function(){
+        $('#comment-text').on('focus',function(){
+            $('#comment-like-div').css({'height':'30%'});
+        })
+        $('#comment-text').on('blur',function(){
+            $('#comment-like-div').css({'height':'60%'});
+        })
+    })
+</script>
 
 
     <script src="./slick/slick.js" type="text/javascript" charset="utf-8"></script>
@@ -517,21 +527,9 @@ if (!isset($_SESSION['email'])) {
                 slidesToScroll: 3,
 
             });
-
-
         });
     </script>
 
-<script>
-    $(document).ready(function(){
-        $('#comment-text').on('focus',function(){
-            $('#comment-like-div').css({'height':'30%'});
-        })
-        $('#comment-text').on('blur',function(){
-            $('#comment-like-div').css({'height':'60%'});
-        })
-    })
-</script>
     </body>
 
     </html>
