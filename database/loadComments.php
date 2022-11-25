@@ -154,12 +154,10 @@ if (isset($_POST['comment-btn'])) {
 
 <script>
     $(document).ready(function(){
-        $('#comment-text').on('focus',function(){
-            alert('hiii');
+        $('#comment-text').on('focus',function(){            
             $('#comment-like-div').css({'height':'30%!important'});
         })
-        $('#email').on('blur',function(){
-            alert('hello');
+        $('#email').on('blur',function(){            
             $('#comment-like-div').css({'height':'60%!important'});
         })
     })
