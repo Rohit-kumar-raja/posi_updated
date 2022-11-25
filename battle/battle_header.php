@@ -134,7 +134,7 @@ include '../framwork/main.php';
           </a>
         </div>
         <div class="col-3 col-xs-3 footer-icons ">
-          <a href="../notification.php" class="footer-single-icon btn  " title="">
+          <a href="../notification.php" class="footer-single-icon btn  " title="" style="display: inline;">
             <i class="fa-solid fa-heart <?= array_search('notification.php', $page_name) != '' ? 'text-primary' : '' ?>">
               <?php $notification_count = fetchResult('notifications', 'notificationFor=' . $_SESSION['id'] . ' && notificationStatus="new"') ?>
             </i> <sup style="font-size: 10px ; margin-left: -8px;" class=" p-1 text-white bg-danger rounded-circle"><?= mysqli_num_rows($notification_count) ?></sup>
