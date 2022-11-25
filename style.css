@@ -525,3 +525,7 @@
         padding-left: 0px!important;
         padding-right: 0px!important;
     }
+
+    .row{
+        margin-right: -7px!important;
+    }
