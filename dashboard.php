@@ -506,13 +506,16 @@ if (!isset($_SESSION['email'])) {
     <script>
     $(document).ready(function(){
         $('#comment-text').on('focus',function(){
-            $('#comment-like-div').css({'height':'30%'});
+            alert('hiii');
+            $('#comment-like-div').css({'height':'30%!important'});
         })
-        $('#comment-text').on('blur',function(){
-            $('#comment-like-div').css({'height':'60%'});
+        $('#email').on('blur',function(){
+            alert('hello');
+            $('#comment-like-div').css({'height':'60%!important'});
         })
     })
 </script>
+
 
 
     <script src="./slick/slick.js" type="text/javascript" charset="utf-8"></script>
