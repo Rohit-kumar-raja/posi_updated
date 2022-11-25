@@ -527,7 +527,7 @@ if (!isset($_SESSION['email'])) {
         $('#comment-text').on('focus',function(){
             $('#comment-like-div').css({'height':'30%'});
         })
-        $('#email').on('blur',function(){
+        $('#comment-text').on('blur',function(){
             $('#comment-like-div').css({'height':'60%'});
         })
     })
