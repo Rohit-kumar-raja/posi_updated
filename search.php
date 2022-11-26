@@ -129,7 +129,7 @@
                         ?>
                             <div class='col-md-3 col-6 mb-3 p-0'>
                                 <div class='card'>
-                                    <img class='card-img-top' src='dp/<?= $dp ?>' alt='Card image' style=''>
+                                    <img class='card-img-top' src='dp/<?= $dp ?>' alt='Card image' style="width: 100px;margin: 0 auto;">
                                     <div class='card-body'>
                                         <h4 class='card-title card-title2'><?= $fname . ' ' . $lname ?></h4>
                                         <div class='row'>
