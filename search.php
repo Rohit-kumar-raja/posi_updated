@@ -131,7 +131,7 @@
                                 <div class='card'>
                                     <img class='card-img-top' src='dp/<?= $dp ?>' alt='Card image' style="width: 100px;margin: 0 auto;border-radius: 50px;">
                                     <div class='card-body'>
-                                        <h4 class='card-title card-title2'><?= $fname . ' ' . $lname ?></h4>
+                                        <h4 class='card-title card-title2 text-center'><?= $fname . ' ' . $lname ?></h4>
                                         <div class='row'>
                                             <div class='col-6'>
                                                 <a href='./profile/profile.php?id=<?= $row['userId'] ?>'>
