@@ -15,8 +15,7 @@ if (isset($_POST['comment-btn'])) {
     top: 23px;
     right: 6%;
     background: white;font-size: 16px;
-    color: #d1d1d1;
-"><i  class="fas fa-times-circle text-dark"></i></button></span>
+    color: #d1d1d1;"><i  class="fas fa-times-circle text-dark"></i></button></span>
 
 
     <div id="comment-like-div" style="background:#fff; box-shadow:0px 0px 100px 5px white;">
@@ -55,8 +54,20 @@ if (isset($_POST['comment-btn'])) {
 </div>
 
 <script>
+    $(document).ready(function(){
+        $('#comment-text').on('focus',function(){            
+            $('#comment-like-div').css({'height':'30%!important'});
+        })
+        $('#email').on('blur',function(){            
+            $('#comment-like-div').css({'height':'60%!important'});
+        })
+    })
+</script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+
+<script>
     $(document).ready(function() {
-        //        when pop up div is loaded then load all comment  for first time
+        //when pop up div is loaded then load all comment  for first time
         var pid = "<?php echo $pid ?>";
         postId = new FormData();
         postId.append("pid", pid);
@@ -152,13 +163,3 @@ if (isset($_POST['comment-btn'])) {
     });
 </script>
 
-<script>
-    $(document).ready(function(){
-        $('#comment-text').on('focus',function(){            
-            $('#comment-like-div').css({'height':'30%!important'});
-        })
-        $('#email').on('blur',function(){            
-            $('#comment-like-div').css({'height':'60%!important'});
-        })
-    })
-</script>

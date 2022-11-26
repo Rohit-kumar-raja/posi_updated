@@ -507,6 +507,17 @@ if (!isset($_SESSION['email'])) {
     
 
 
+    <script>
+    $(document).ready(function(){
+        $('#comment-text').on('focus',function(){            
+            $('#comment-like-div').css({'height':'30%!important'});
+        })
+        $('#email').on('blur',function(){            
+            $('#comment-like-div').css({'height':'60%!important'});
+        })
+    })
+</script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 
     <script src="./slick/slick.js" type="text/javascript" charset="utf-8"></script>
     <script type="text/javascript">

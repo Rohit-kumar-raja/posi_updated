@@ -125,3 +125,16 @@ function allComments($pid)
 }
 
 ?>
+
+
+<script>
+    $(document).ready(function(){
+        $('#comment-text').on('focus',function(){            
+            $('#comment-like-div').css({'height':'30%!important'});
+        })
+        $('#email').on('blur',function(){            
+            $('#comment-like-div').css({'height':'60%!important'});
+        })
+    })
+</script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
