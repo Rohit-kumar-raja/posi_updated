@@ -63,7 +63,7 @@
                                 <div class='card'>
                                     <img class='card-img-top' src='dp/<?= $dp ?>' alt='Card image' style=''>
                                     <div class='card-body'>
-                                        <h4 class='card-title'><?= $fname . ' ' . $lname ?></h4>
+                                        <h4 class='card-title card-title1'><?= $fname . ' ' . $lname ?></h4>
                                         <div class='row'>
                                             <div class='col-6'>
                                                 <a href='./profile/profile.php?id=<?= $id ?>'>
@@ -119,7 +119,7 @@
                                 <div class='card'>
                                     <img class='card-img-top' src='dp/<?= $dp ?>' alt='Card image' style=''>
                                     <div class='card-body'>
-                                        <h4 class='card-title'><?= $fname . ' ' . $lname ?></h4>
+                                        <h4 class='card-title card-title2'><?= $fname . ' ' . $lname ?></h4>
                                         <div class='row'>
                                             <div class='col-6'>
                                                 <a href='./profile/profile.php?id=<?= $row['userId'] ?>'>
