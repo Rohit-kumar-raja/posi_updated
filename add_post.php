@@ -133,7 +133,7 @@ if (!isset($_SESSION['email'])) {
 
                         <input onchange="image_check(this,1024)" accept="image/*" type='file' id="cstmbtn" />
 
-                        <img id="blah" src="#" />
+                        <img id="blah" src="#" style="width: 100%;"/>
 
                         <script>
                             cstmbtn.onchange = evt => {

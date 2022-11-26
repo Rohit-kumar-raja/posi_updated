@@ -73,18 +73,6 @@ if (!isset($_SESSION['email'])) {
     <?php // include "dash-testing.php";
     ?>
 
-<script>
-    $(document).ready(function(){
-        $('#comment-text').on('focus',function(){
-            alert('hiii');
-            $('#comment-like-div').css({'height':'30%!important'});
-        })
-        $('#email').on('blur',function(){
-            alert('hello');
-            $('#comment-like-div').css({'height':'60%!important'});
-        })
-    })
-</script>
 
 
     <div class="container-fluid">
