@@ -1,3 +1,15 @@
+<style>
+    .card-title2{
+        font-size: 13px!important;
+    }
+    .card{
+        border: 1px solid rgb(255 255 255 / 13%)!important;
+    }
+    .btn-sm{
+        font-size:7px!important;
+    }
+</style>
+
 <?php
 // include "posi_header.php";
 // error_reporting(0);
@@ -115,7 +127,7 @@
 
 
                         ?>
-                            <div class='col-md-3 col-6 mb-3'>
+                            <div class='col-md-3 col-6 mb-3 p-0'>
                                 <div class='card'>
                                     <img class='card-img-top' src='dp/<?= $dp ?>' alt='Card image' style=''>
                                     <div class='card-body'>
