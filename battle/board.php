@@ -111,6 +111,10 @@ include "battle_header.php";
     <div class="container-fluid" style="margin-bottom:100px;">
 
         <div class="row">
+        <div class="col-md-12 requested-user">
+                    <h3 class="text-center">Battle Request Recived</h3>
+                    <?php usersToMe(); ?><br><br>
+                </div>
             <div class="col-md-12 all-user" style="margin-top: 60px;">
                 <h3 class="text-center">Current Battle Competitors</h3>
                 <div class="row">
@@ -145,10 +149,7 @@ include "battle_header.php";
                     <?php meToUsers(); ?>
                 </div>
 
-                <div class="col-md-12 requested-user">
-                    <h3 class="text-center">Battle Request Recived</h3>
-                    <?php usersToMe(); ?><br><br>
-                </div>
+               
                 <br><br>
             </div>
         </div>
