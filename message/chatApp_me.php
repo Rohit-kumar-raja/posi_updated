@@ -100,6 +100,10 @@ $user=mysqli_fetch_array($user);
         margin-top: 25px;
         display: flex;
         align-items: flex-start;
+
+        bottom: 8%;
+    position: absolute;
+    width: 90%;
     }
 
     .chat-form textarea {
