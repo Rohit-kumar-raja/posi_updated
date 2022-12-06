@@ -230,7 +230,7 @@ function newUsers()
                              </div>
                              
                            <div class='row btn'>
-                             <a id='request' href='../add_request.php?pid={$row['userId']}' target='_blank'><button data-id='{$row['userId']}' data-name='{$row['firstName']}' class='request-btn' >Challenge</button>
+                             <a id='request' href='../add_request.php?pid={$row['userId']}' target='_blank'><button data-id='{$row['userId']}' data-name='{$row['firstName']}' class='request-btn btn-success' >Challenge</button>
                              </a>
                             </div>
 

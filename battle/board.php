@@ -84,7 +84,7 @@ include "battle_header.php";
         }
 
         .user-detail .user-name-buttons button {
-            width: 40px;
+            /* width: 40px; */
             padding: 4px 10px;
             font-size: 14px;
             outline: none;
