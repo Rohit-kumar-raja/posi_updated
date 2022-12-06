@@ -209,7 +209,9 @@ $user=mysqli_fetch_array($user);
 
     <div class="container">
 
-        <div class="row" style=" margin-top:35px;">           
+        <div class="row" style=" 
+        /* margin-top:35px; */
+        ">           
 
             <div class="chatbox " style="float:right;">
                 <div class="chat-with-user" >
