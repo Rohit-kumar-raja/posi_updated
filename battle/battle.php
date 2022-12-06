@@ -112,7 +112,7 @@ include "battle_header.php";
 
         <div class="row">
             <div class="col-md-12 all-user" style="margin-top: 60px;">
-                <h3 class="text-center">Current Battle Competitors</h3>
+                <h3 class="text-center">Friends challenge</h3>
                 <div class="row">
 
                     <?php //newUsers();

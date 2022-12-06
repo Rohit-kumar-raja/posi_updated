@@ -77,6 +77,7 @@ if (!isset($_SESSION['email'])) {
                 <?php echo $user['firstName'] . ' ' . $user['lastName']; ?> <?php if ($userid == $_SESSION['id']) { ?>
                   <a class="text-info" href="myData.php"><i class="fas fa-edit"></i></a>
                 <?php } ?>
+                <h6 class="p-3"><?php echo $user['status'] ?></h6>
               </h4>
               <?php
               $one = $user['userId'];
