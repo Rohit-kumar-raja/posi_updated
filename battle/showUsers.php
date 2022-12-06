@@ -358,7 +358,7 @@ function meToUsers()
           <div class='user-name-buttons'>
 
             <div class='btn'>
-              <a id='request' href='#'><button data-id='<?= $row['player2_id'] ?>' data-name='<?= $receiverNameDp['firstName'] ?>' class='btn btn-danger cancel-btn'><i class='fa fa-times'></i></button></a>
+              <a id='request' href='#'><button data-id='<?= $row['player2_id'] ?>' data-name='<?= $receiverNameDp['firstName'] ?>' class='btn btn-danger cancel-btn'>Cancel</button></a>
             </div>
 
           </div>
@@ -404,10 +404,10 @@ function usersToMe()
           <div class='user-name-buttons'>
             <div class=' btn'>
               <a href='../add_request2.php?pid=<?= $row['player1_id'] ?>' target='_blank'>
-                <button data-id='<?= $row['player1_id'] ?>' data-name='<?= $senderNameDp['firstName'] ?>' class='btn btn-success accept-btn'><i class='fa fa-check'></i></button>
+                <button data-id='<?= $row['player1_id'] ?>' data-name='<?= $senderNameDp['firstName'] ?>' class='btn btn-success accept-btn'>Accept</button>
               </a>
               <a href='#'>
-                <button data-id='<?= $row['player1_id'] ?>' data-name='<?= $senderNameDp['firstName'] ?>' class='btn btn-danger ignore-btn'><i class='fa fa-times'></i></button>
+                <button data-id='<?= $row['player1_id'] ?>' data-name='<?= $senderNameDp['firstName'] ?>' class='btn btn-danger ignore-btn'>Cancel</button>
               </a>
             </div>
           </div>

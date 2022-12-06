@@ -85,11 +85,11 @@ include "battle_header.php";
 
         .user-detail .user-name-buttons button {
             /* width: 40px; */
-            padding: 4px 10px;
-            font-size: 14px;
-            outline: none;
-            border: none;
-            border-radius: 10px;
+            padding: 3px 8px;
+    font-size: 12px;
+    outline: none;
+    border: none;
+    border-radius: 5px;
         }
 
         .friend-pic img {
