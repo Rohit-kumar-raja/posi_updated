@@ -393,10 +393,18 @@ function usersToMe()
       ?>
 
         <div class='col-6 col-md-4 user-detail'>
-          <img <?= 'src="data:image/jpeg;base64,' . base64_encode($row['player2_post']) . '"' ?> style='width:100px'>
 
-          <div class='user-pic' style='display: flex;margin-left: 35px;'>
+
+           <img <?= 'src="data:image/jpeg;base64,' . base64_encode($row['player2_post']) . '"' ?> style='width:100px'>
+            <div class='user-pic' style='display: flex;margin-left: 35px;'>
             <img src='../dp/<?= $row['dp'] ?>' style='height: 30px;width: 30px;'>
+
+
+          <!-- <img <?= 'src="data:image/jpeg;base64,' . base64_encode($row['player2_post']) . '"' ?> style='width:100px'>
+          <div class='user-pic' style='display: flex;margin-left: 35px;'>                      
+          <img src='../dp/<?= $row['dp'] ?>' style='height: 30px;width: 30px;'> -->
+
+
             <a href='../home.php?id=<?= $row['player1_id'] ?>'>
               <p class='name-tilte' style='font-size: 12px;text-transform: capitalize;margin: 6px;'><?= $senderNameDp['firstName'] ?></p>
             </a>
