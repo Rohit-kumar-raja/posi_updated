@@ -408,6 +408,7 @@ if (!isset($_SESSION['email'])) {
                             contentType: false,
                             processData: false,
                             success: function(result) {
+                                alert('Solo Post Added Successfully');
                                 window.open('dashboard.php', '_self');
                             }
                         });
