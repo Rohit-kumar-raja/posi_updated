@@ -394,7 +394,7 @@ function usersToMe()
 
         <div class='col-6 col-md-4 user-detail'>
           
-          <img <?= 'src="data:image/jpeg;base64,' . base64_encode($row['player2_post']) . '"' ?> style='width:100px'>
+          <img <?= 'src="data:image/jpeg;base64,' . base64_encode($row['player1_post']) . '"' ?> style='width:100px'>
 
           <div class='user-pic' style='display: flex;margin-left: 35px;'>
             
@@ -406,7 +406,7 @@ function usersToMe()
           </div>
           <div class='user-name-buttons'>
             <div class=' btn'>
-              <a href='../add_request2.php?pid=<?= $row['player1_id'] ?>' target='_blank'>
+              <a href='../add_request2.php?pid=<?= $row['player1_id'] ?>' target='_blank' class="pl1">
                 <button data-id='<?= $row['player1_id'] ?>' data-name='<?= $senderNameDp['firstName'] ?>' class='btn btn-success accept-btn'>Accept</button>
               </a>
               <a href='#'>
